@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox xmlns:fx="http://javafx.com/fxml" fx:controller="de.quastenflossler.snail.ui.controller.MainMenuBarController"
+      maxWidth="Infinity">
+
+    <MenuBar layoutY="2.0" prefHeight="25.0" HBox.hgrow="ALWAYS">
+
+        <Menu mnemonicParsing="false" text="File">
+            <MenuItem id="exit" fx:id="menuItemExit" mnemonicParsing="false" text="Close" onAction="#handleExitAction"/>
+        </Menu>
+
+        <Menu mnemonicParsing="false" text="Issue" >
+            <MenuItem id="printIssue" fx:id="printIssueMenuItem" mnemonicParsing="false" text="Print Issue" onAction="#handlePrintIssueAction"/>
+        </Menu>
+
+        <Menu mnemonicParsing="false" text="Help">
+            <MenuItem id="help" fx:id="helpMenuItem" mnemonicParsing="false" text="Info" onAction="#handleInfoAction"/>
+        </Menu>
+
+    </MenuBar>
+
+</HBox>

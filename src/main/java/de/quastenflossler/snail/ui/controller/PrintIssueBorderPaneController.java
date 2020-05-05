@@ -1,4 +1,4 @@
-package de.quastenflossler.snail.ui;
+package de.quastenflossler.snail.ui.controller;
 
 import de.quastenflossler.snail.service.domain.DomainObjectMapper;
 import de.quastenflossler.snail.service.domain.SmartIssue;
@@ -18,11 +18,11 @@ import org.slf4j.LoggerFactory;
 import javax.annotation.Resource;
 import javax.inject.Named;
 
-@Named(value = Controller.RESOURCE_NAME)
-public class Controller {
+@Named(value = PrintIssueBorderPaneController.RESOURCE_NAME)
+public class PrintIssueBorderPaneController {
 
     public static final String RESOURCE_NAME = "Controller";
-    private static final Logger LOGGER = LoggerFactory.getLogger(Controller.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PrintIssueBorderPaneController.class);
 
     @FXML
     public TextField issueKeyTextField;

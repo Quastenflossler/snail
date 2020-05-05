@@ -60,7 +60,7 @@ public class SnailJavaFxClient extends Application {
             mainStage.setTitle("Snail");
             mainStage.setResizable(false);
 
-            ControlManager.getInstance().showScene(mainStage, SnailScene.MAIN);
+            ControlManager.getInstance().showScene(mainStage, SnailScene.HOMESCREEN);
 
         } catch (Exception e) {
 

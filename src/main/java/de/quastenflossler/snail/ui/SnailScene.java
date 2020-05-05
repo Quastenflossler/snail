@@ -2,7 +2,8 @@ package de.quastenflossler.snail.ui;
 
 public enum SnailScene {
 
-    MAIN("main scene", "mainScene.fxml");
+    HOMESCREEN("homescreen scene", "homescreenScene.fxml"),
+    PRINT_ISSUE("print issue scene", "printIssueScene.fxml");
 
     private String name;
     private String fxmlFile;
