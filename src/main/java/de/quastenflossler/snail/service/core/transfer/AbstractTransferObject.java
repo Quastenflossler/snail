@@ -1,4 +1,4 @@
-package de.quastenflossler.snail.service.transfer;
+package de.quastenflossler.snail.service.core.transfer;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 

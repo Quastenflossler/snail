@@ -63,6 +63,10 @@ public class ControlManager {
         return INSTANCE;
     }
 
+    public Scene getScene(final SnailScene scene) {
+        return scenes.get(scene.getName());
+    }
+
     public void init() throws IOException {
 
         LOGGER.debug("[START] initialization of control manager");

@@ -10,11 +10,11 @@ import java.io.IOException;
 
 public class UiHelper {
 
-    public static void centerOnScreen(final Window userLoginStage) {
+    public static void centerOnScreen(final Window window) {
 
         Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
-        userLoginStage.setX((primScreenBounds.getWidth() - userLoginStage.getWidth()) / 2);
-        userLoginStage.setY((primScreenBounds.getHeight() - userLoginStage.getHeight()) / 2);
+        window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
+        window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);
     }
 
     public static Stage loadStageByFxml(final String fxmlFile, final Class<?> parentClass) throws IOException {

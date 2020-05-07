@@ -1,11 +1,14 @@
-package de.quastenflossler.snail.service.domain.impl;
+package de.quastenflossler.snail.service.core.domain.impl;
 
-import de.quastenflossler.snail.service.domain.BasicEpic;
-import de.quastenflossler.snail.service.domain.BasicIssue;
-import de.quastenflossler.snail.service.domain.DomainObjectMapper;
-import de.quastenflossler.snail.service.domain.SmartIssue;
-import de.quastenflossler.snail.service.transfer.BasicEpicTO;
-import de.quastenflossler.snail.service.transfer.BasicIssueTO;
+import de.quastenflossler.snail.service.core.domain.DomainObjectMapper;
+import de.quastenflossler.snail.service.issue.domain.BasicEpic;
+import de.quastenflossler.snail.service.issue.domain.BasicIssue;
+import de.quastenflossler.snail.service.issue.domain.SmartIssue;
+import de.quastenflossler.snail.service.issue.domain.impl.DefaultBasicEpic;
+import de.quastenflossler.snail.service.issue.domain.impl.DefaultBasicIssue;
+import de.quastenflossler.snail.service.issue.domain.impl.DefaultSmartIssue;
+import de.quastenflossler.snail.service.issue.transfer.BasicEpicTO;
+import de.quastenflossler.snail.service.issue.transfer.BasicIssueTO;
 
 import javax.inject.Named;
 

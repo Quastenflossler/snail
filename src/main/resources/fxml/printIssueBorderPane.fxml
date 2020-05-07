@@ -10,7 +10,7 @@
             fx:controller="de.quastenflossler.snail.ui.controller.PrintIssueBorderPaneController">
 
     <padding>
-        <Insets top="25" right="25" bottom="25" left="25"/>
+        <Insets top="5" right="5" bottom="5" left="5"/>
     </padding>
 
     <center>

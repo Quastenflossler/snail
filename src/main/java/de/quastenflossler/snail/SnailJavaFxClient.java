@@ -2,6 +2,9 @@ package de.quastenflossler.snail;
 
 import de.quastenflossler.snail.config.SpringConfig;
 import de.quastenflossler.snail.config.SpringContextFactory;
+import de.quastenflossler.snail.service.core.exception.InternalServiceException;
+import de.quastenflossler.snail.service.userpref.DefaultUserPreferencesService;
+import de.quastenflossler.snail.service.userpref.UserPreferenceService;
 import de.quastenflossler.snail.ui.ControlManager;
 import de.quastenflossler.snail.ui.SnailScene;
 import javafx.application.Application;
@@ -26,7 +29,7 @@ public class SnailJavaFxClient extends Application {
     private ConfigurableApplicationContext applicationContext;
 
     @Override
-    public void init() throws IOException {
+    public void init() throws IOException, InternalServiceException {
 
         LOGGER.debug("[START] Client will be initialized...");
 
@@ -38,7 +41,11 @@ public class SnailJavaFxClient extends Application {
         LOGGER.debug("context is initialized");
 
         ControlManager.getInstance().setApplicationContext(applicationContext);
-        ControlManager.getInstance().setActiveLocale(Locale.forLanguageTag("de-DE"));
+
+        UserPreferenceService userPreferencesService = (UserPreferenceService) SpringConfig.getBean(DefaultUserPreferencesService.RESOURCE_NAME);
+        Locale loadedLocale = userPreferencesService.findUserPreferences().getLanguage();
+        ControlManager.getInstance().setActiveLocale(loadedLocale);
+
         ControlManager.getInstance().init();
 
         stopWatch.stop();

@@ -1,10 +1,10 @@
-package de.quastenflossler.snail.service.domain.impl;
+package de.quastenflossler.snail.service.issue.domain.impl;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import de.quastenflossler.snail.service.domain.SmartIssue;
+import de.quastenflossler.snail.service.issue.domain.SmartIssue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

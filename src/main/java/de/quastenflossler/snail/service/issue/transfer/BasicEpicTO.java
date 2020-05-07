@@ -1,4 +1,6 @@
-package de.quastenflossler.snail.service.transfer;
+package de.quastenflossler.snail.service.issue.transfer;
+
+import de.quastenflossler.snail.service.core.transfer.AbstractTransferObject;
 
 public class BasicEpicTO extends AbstractTransferObject {
 

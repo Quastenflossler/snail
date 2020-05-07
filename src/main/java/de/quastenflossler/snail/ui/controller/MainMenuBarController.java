@@ -7,6 +7,9 @@ import de.quastenflossler.snail.ui.command.impl.CloseApplicationCommand;
 import de.quastenflossler.snail.ui.command.impl.DefaultSnailCommandFactory;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import javax.annotation.Resource;
 import javax.inject.Named;
@@ -36,5 +39,17 @@ public class MainMenuBarController {
 
     @FXML
     public void handleInfoAction() {
+    }
+
+    @FXML
+    public void handleSettingsAction() {
+
+        Stage settingsWindow = new Stage(StageStyle.DECORATED);
+        settingsWindow.setTitle("Snail - Settings");
+        settingsWindow.setResizable(false);
+        settingsWindow.initModality(Modality.APPLICATION_MODAL);
+        settingsWindow.setScene(ControlManager.getInstance().getScene(SnailScene.SETTINGS));
+
+        settingsWindow.show();
     }
 }

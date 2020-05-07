@@ -16,19 +16,29 @@ module quastenflossler.snail {
     exports de.quastenflossler.snail;
     exports de.quastenflossler.snail.config;
     exports de.quastenflossler.snail.ui;
-    exports de.quastenflossler.snail.service.domain;
+    exports de.quastenflossler.snail.service.core.domain.impl;
+    exports de.quastenflossler.snail.service.issue.domain.impl;
     exports de.quastenflossler.snail.ui.command;
     exports de.quastenflossler.snail.ui.command.impl;
     exports de.quastenflossler.snail.ui.controller;
+    exports de.quastenflossler.snail.service.issue to spring.beans;
+    exports de.quastenflossler.snail.service.userpref to spring.beans;
+    exports de.quastenflossler.snail.ui.control to javafx.fxml;
 
     opens de.quastenflossler.snail to spring.core;
     opens de.quastenflossler.snail.config to spring.core;
     opens de.quastenflossler.snail.ui to spring.core;
-    opens de.quastenflossler.snail.service.domain to spring.core;
+    opens de.quastenflossler.snail.service.core.domain.impl to spring.core, spring.beans;
+    opens de.quastenflossler.snail.service.issue.domain.impl to spring.core;
     opens de.quastenflossler.snail.ui.command to spring.core;
     opens de.quastenflossler.snail.ui.controller to spring.core,javafx.fxml;
+    opens de.quastenflossler.snail.service.issue to spring.core;
+    opens de.quastenflossler.snail.service.userpref to spring.core;
+    opens de.quastenflossler.snail.service.userpref.transfer to org.apache.commons.lang3;
+    opens de.quastenflossler.snail.service.issue.transfer to org.apache.commons.lang3;
+    opens de.quastenflossler.snail.service.core.transfer to org.apache.commons.lang3;
 
     opens de.quastenflossler.snail.ui.command.impl to spring.beans;
-    opens de.quastenflossler.snail.service.domain.impl to spring.beans;
+    opens de.quastenflossler.snail.service.userpref.domain to spring.beans;
 
 }

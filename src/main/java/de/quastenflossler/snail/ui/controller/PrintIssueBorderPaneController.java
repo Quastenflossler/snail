@@ -1,10 +1,9 @@
 package de.quastenflossler.snail.ui.controller;
 
-import de.quastenflossler.snail.service.domain.DomainObjectMapper;
-import de.quastenflossler.snail.service.domain.SmartIssue;
-import de.quastenflossler.snail.service.domain.impl.DefaultDomainObjectMapper;
-import de.quastenflossler.snail.service.transfer.BasicEpicTO;
-import de.quastenflossler.snail.service.transfer.BasicIssueTO;
+import de.quastenflossler.snail.service.issue.DefaultIssueService;
+import de.quastenflossler.snail.service.issue.IssueService;
+import de.quastenflossler.snail.service.issue.transfer.BasicEpicTO;
+import de.quastenflossler.snail.service.issue.transfer.BasicIssueTO;
 import de.quastenflossler.snail.ui.command.SnailCommandFactory;
 import de.quastenflossler.snail.ui.command.impl.DefaultSnailCommandFactory;
 import de.quastenflossler.snail.ui.command.impl.HandleExceptionCommand;
@@ -57,8 +56,8 @@ public class PrintIssueBorderPaneController {
     @Resource(name = DefaultSnailCommandFactory.RESOURCE_NAME)
     private SnailCommandFactory commandFactory;
 
-    @Resource(name = DefaultDomainObjectMapper.RESOURCE_NAME)
-    private DomainObjectMapper domainObjectMapper;
+    @Resource(name = DefaultIssueService.RESOURCE_NAME)
+    private IssueService issueService;
 
     public void handlePrintIssueAction() {
 
@@ -80,8 +79,7 @@ public class PrintIssueBorderPaneController {
             issueTO.setPlannedSprint(issuePlannedSprintTextField.getText());
             issueTO.setDeadline(issueDeadlineTextField.getText());
 
-            SmartIssue issue = domainObjectMapper.createSmartIssue(issueTO);
-            issue.printAsPdf();
+            issueService.printIssue(issueTO);
 
         } catch (Exception e) {
 

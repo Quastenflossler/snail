@@ -1,4 +1,4 @@
-package de.quastenflossler.snail.service.domain;
+package de.quastenflossler.snail.service.issue.domain;
 
 public interface BasicIssue {
 

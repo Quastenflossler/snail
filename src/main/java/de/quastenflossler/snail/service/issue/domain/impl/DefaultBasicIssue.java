@@ -1,7 +1,7 @@
-package de.quastenflossler.snail.service.domain.impl;
+package de.quastenflossler.snail.service.issue.domain.impl;
 
-import de.quastenflossler.snail.service.domain.BasicEpic;
-import de.quastenflossler.snail.service.domain.BasicIssue;
+import de.quastenflossler.snail.service.issue.domain.BasicEpic;
+import de.quastenflossler.snail.service.issue.domain.BasicIssue;
 
 public class DefaultBasicIssue implements BasicIssue {
 

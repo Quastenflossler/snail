@@ -8,16 +8,17 @@
 
     <MenuBar layoutY="2.0" prefHeight="25.0" HBox.hgrow="ALWAYS">
 
-        <Menu mnemonicParsing="false" text="File">
-            <MenuItem id="exit" fx:id="menuItemExit" mnemonicParsing="false" text="Close" onAction="#handleExitAction"/>
+        <Menu mnemonicParsing="false" text="%menu.file">
+            <MenuItem id="settings" fx:id="settingsMenuItem" mnemonicParsing="false" text="%menu.file.settings" onAction="#handleSettingsAction"/>
+            <MenuItem id="exit" fx:id="exitMenuItem" mnemonicParsing="false" text="%menu.file.exit" onAction="#handleExitAction"/>
         </Menu>
 
-        <Menu mnemonicParsing="false" text="Issue" >
-            <MenuItem id="printIssue" fx:id="printIssueMenuItem" mnemonicParsing="false" text="Print Issue" onAction="#handlePrintIssueAction"/>
+        <Menu mnemonicParsing="false" text="%menu.issue" >
+            <MenuItem id="printIssue" fx:id="printIssueMenuItem" mnemonicParsing="false" text="%menu.issue.printIssue" onAction="#handlePrintIssueAction"/>
         </Menu>
 
-        <Menu mnemonicParsing="false" text="Help">
-            <MenuItem id="help" fx:id="helpMenuItem" mnemonicParsing="false" text="Info" onAction="#handleInfoAction"/>
+        <Menu mnemonicParsing="false" text="%menu.info">
+            <MenuItem id="help" fx:id="helpMenuItem" mnemonicParsing="false" text="%menu.info.help" onAction="#handleInfoAction"/>
         </Menu>
 
     </MenuBar>
