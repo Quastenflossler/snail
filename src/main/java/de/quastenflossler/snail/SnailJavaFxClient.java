@@ -5,8 +5,9 @@ import de.quastenflossler.snail.config.SpringContextFactory;
 import de.quastenflossler.snail.service.core.exception.InternalServiceException;
 import de.quastenflossler.snail.service.userpref.DefaultUserPreferencesService;
 import de.quastenflossler.snail.service.userpref.UserPreferenceService;
-import de.quastenflossler.snail.ui.ControlManager;
-import de.quastenflossler.snail.ui.SnailScene;
+import de.quastenflossler.snail.ui.stage.SnailStage;
+import de.quastenflossler.snail.ui.stage.SnailStageDirector;
+import de.quastenflossler.snail.ui.stage.SnailScene;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -40,13 +41,13 @@ public class SnailJavaFxClient extends Application {
         applicationContext = (ConfigurableApplicationContext) SpringContextFactory.getApplicationContext();
         LOGGER.debug("context is initialized");
 
-        ControlManager.getInstance().setApplicationContext(applicationContext);
+        SnailStageDirector.getInstance().setApplicationContext(applicationContext);
 
         UserPreferenceService userPreferencesService = (UserPreferenceService) SpringConfig.getBean(DefaultUserPreferencesService.RESOURCE_NAME);
         Locale loadedLocale = userPreferencesService.findUserPreferences().getLanguage();
-        ControlManager.getInstance().setActiveLocale(loadedLocale);
+        SnailStageDirector.getInstance().setActiveLocale(loadedLocale);
 
-        ControlManager.getInstance().init();
+        SnailStageDirector.getInstance().init();
 
         stopWatch.stop();
         LOGGER.debug("[END] Client will be initialized... | Duration: {}ms", stopWatch.getTime());
@@ -63,11 +64,7 @@ public class SnailJavaFxClient extends Application {
 
         try {
 
-            Stage mainStage = new Stage(StageStyle.UTILITY);
-            mainStage.setTitle("Snail");
-            mainStage.setResizable(false);
-
-            ControlManager.getInstance().showScene(mainStage, SnailScene.HOMESCREEN);
+            SnailStageDirector.getInstance().showStage(SnailStage.PRIMARY, SnailScene.HOMESCREEN);
 
         } catch (Exception e) {
 

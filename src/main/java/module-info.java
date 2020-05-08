@@ -15,7 +15,6 @@ module quastenflossler.snail {
 
     exports de.quastenflossler.snail;
     exports de.quastenflossler.snail.config;
-    exports de.quastenflossler.snail.ui;
     exports de.quastenflossler.snail.service.core.domain.impl;
     exports de.quastenflossler.snail.service.issue.domain.impl;
     exports de.quastenflossler.snail.ui.command;
@@ -27,7 +26,6 @@ module quastenflossler.snail {
 
     opens de.quastenflossler.snail to spring.core;
     opens de.quastenflossler.snail.config to spring.core;
-    opens de.quastenflossler.snail.ui to spring.core;
     opens de.quastenflossler.snail.service.core.domain.impl to spring.core, spring.beans;
     opens de.quastenflossler.snail.service.issue.domain.impl to spring.core;
     opens de.quastenflossler.snail.ui.command to spring.core;

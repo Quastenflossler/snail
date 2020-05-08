@@ -5,11 +5,11 @@ import de.quastenflossler.snail.service.core.exception.InternalServiceException;
 import de.quastenflossler.snail.service.userpref.DefaultUserPreferencesService;
 import de.quastenflossler.snail.service.userpref.UserPreferenceService;
 import de.quastenflossler.snail.service.userpref.transfer.UserPreferencesTO;
-import de.quastenflossler.snail.ui.ControlManager;
 import de.quastenflossler.snail.ui.command.SnailCommandFactory;
 import de.quastenflossler.snail.ui.command.impl.DefaultSnailCommandFactory;
 import de.quastenflossler.snail.ui.command.impl.HandleExceptionCommand;
 import de.quastenflossler.snail.ui.control.LanguageChoiceBox;
+import de.quastenflossler.snail.ui.stage.SnailStageDirector;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 
@@ -34,7 +34,7 @@ public class UserPrefSceneController {
     public void initialize() {
 
         languageChoiceBox.setItems(FXCollections.observableArrayList(Locale.ENGLISH, Locale.GERMANY));
-        languageChoiceBox.getSelectionModel().select(ControlManager.getInstance().getActiveLocale());
+        languageChoiceBox.getSelectionModel().select(SnailStageDirector.getInstance().getActiveLocale());
     }
 
     @FXML
@@ -54,5 +54,7 @@ public class UserPrefSceneController {
 
     @FXML
     public void cancelSaveUserPrefAction() {
+
+        SnailStageDirector.getInstance().closeActiveStage();
     }
 }

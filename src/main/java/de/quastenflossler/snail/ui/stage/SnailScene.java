@@ -1,4 +1,4 @@
-package de.quastenflossler.snail.ui;
+package de.quastenflossler.snail.ui.stage;
 
 public enum SnailScene {
 

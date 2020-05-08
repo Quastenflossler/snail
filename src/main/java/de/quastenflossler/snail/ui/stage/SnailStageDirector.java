@@ -1,4 +1,4 @@
-package de.quastenflossler.snail.ui;
+package de.quastenflossler.snail.ui.stage;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,21 +13,23 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class ControlManager {
+public class SnailStageDirector {
 
-    private static ControlManager INSTANCE;
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(ControlManager.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SnailStageDirector.class);
     private static final String FXML_DIR = "/fxml/";
     private static final String I18N_BASE_NAME = "lang.snail_lang";
 
+    private static SnailStageDirector INSTANCE;
+
     private ConfigurableApplicationContext applicationContext;
+
     private Stage primaryStage;
-    private Locale activeLocale;
+    private Stage activeStage;
     private SnailScene activeScene;
+    private Locale activeLocale;
     private Map<String, Scene> scenes = new HashMap<>();
 
-    private ControlManager() {
+    private SnailStageDirector() {
         // singleton ...
     }
 
@@ -53,11 +55,11 @@ public class ControlManager {
         LOGGER.debug("Active locale is {}", activeLocale);
     }
 
-    public static ControlManager getInstance() {
+    public static SnailStageDirector getInstance() {
 
         if (INSTANCE == null) {
 
-            INSTANCE = new ControlManager();
+            INSTANCE = new SnailStageDirector();
         }
 
         return INSTANCE;
@@ -93,6 +95,23 @@ public class ControlManager {
         primaryStage.setScene(scenes.get(scene.getName()));
         primaryStage.sizeToScene();
         activeScene = scene;
+    }
+
+    public void showStage(final SnailStage stage, final SnailScene scene) {
+
+        Stage stageObject = new Stage(stage.getStyle());
+        stageObject.setTitle(stage.getTitle());
+        stageObject.setResizable(false);
+        stageObject.initModality(stage.getModality());
+
+        showScene(stageObject, scene);
+        activeStage = stageObject;
+    }
+
+    public void closeActiveStage() {
+
+        this.activeStage.close();
+        this.activeStage = primaryStage;
     }
 
     public void replaceStage(final Stage newStage, final SnailScene scene, final Locale newLocale) throws IOException {

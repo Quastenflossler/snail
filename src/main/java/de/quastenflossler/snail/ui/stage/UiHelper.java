@@ -1,4 +1,4 @@
-package de.quastenflossler.snail.ui;
+package de.quastenflossler.snail.ui.stage;
 
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
