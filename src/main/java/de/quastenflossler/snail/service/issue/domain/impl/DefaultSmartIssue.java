@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
 
 public class DefaultSmartIssue extends DefaultBasicIssue implements SmartIssue {
 
@@ -47,9 +48,10 @@ public class DefaultSmartIssue extends DefaultBasicIssue implements SmartIssue {
 
         try {
 
-            String ingoFile = getClass().getResource("/assets/ingo.png").getFile();
-            LOGGER.info(ingoFile);
-            Image logoImage = Image.getInstance(ingoFile);
+            URL ingoFilePath = getClass().getResource("/assets/ingo.png");
+            File ingoFile = new File(ingoFilePath.toURI());
+            LOGGER.info(ingoFile.toString());
+            Image logoImage = Image.getInstance(ingoFilePath.toString());
             table.addCell(createCell(logoImage, Element.ALIGN_CENTER, Element.ALIGN_MIDDLE));
 
         } catch (Exception e) {
