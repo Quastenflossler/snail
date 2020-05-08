@@ -1,12 +1,11 @@
 package de.quastenflossler.snail.ui.controller;
 
-import de.quastenflossler.snail.service.issue.DefaultIssueService;
-import de.quastenflossler.snail.service.issue.IssueService;
 import de.quastenflossler.snail.service.issue.transfer.BasicEpicTO;
 import de.quastenflossler.snail.service.issue.transfer.BasicIssueTO;
 import de.quastenflossler.snail.ui.command.SnailCommandFactory;
 import de.quastenflossler.snail.ui.command.impl.DefaultSnailCommandFactory;
 import de.quastenflossler.snail.ui.command.impl.HandleExceptionCommand;
+import de.quastenflossler.snail.ui.command.impl.PrintIssueCommand;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
@@ -56,9 +55,6 @@ public class PrintIssueBorderPaneController {
     @Resource(name = DefaultSnailCommandFactory.RESOURCE_NAME)
     private SnailCommandFactory commandFactory;
 
-    @Resource(name = DefaultIssueService.RESOURCE_NAME)
-    private IssueService issueService;
-
     public void handlePrintIssueAction() {
 
         try {
@@ -79,7 +75,9 @@ public class PrintIssueBorderPaneController {
             issueTO.setPlannedSprint(issuePlannedSprintTextField.getText());
             issueTO.setDeadline(issueDeadlineTextField.getText());
 
-            issueService.printIssue(issueTO);
+            PrintIssueCommand printIssueCommand = commandFactory.create(PrintIssueCommand.class);
+            printIssueCommand.setIssueTO(issueTO);
+            printIssueCommand.execute();
 
         } catch (Exception e) {
 

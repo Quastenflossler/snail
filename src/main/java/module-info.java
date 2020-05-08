@@ -34,11 +34,11 @@ module quastenflossler.snail {
     opens de.quastenflossler.snail.ui.controller to spring.core,javafx.fxml;
     opens de.quastenflossler.snail.service.issue to spring.core;
     opens de.quastenflossler.snail.service.userpref to spring.core;
+    opens de.quastenflossler.snail.ui.command.impl to spring.core, spring.beans;
     opens de.quastenflossler.snail.service.userpref.transfer to org.apache.commons.lang3;
     opens de.quastenflossler.snail.service.issue.transfer to org.apache.commons.lang3;
     opens de.quastenflossler.snail.service.core.transfer to org.apache.commons.lang3;
 
-    opens de.quastenflossler.snail.ui.command.impl to spring.beans;
     opens de.quastenflossler.snail.service.userpref.domain to spring.beans;
 
 }

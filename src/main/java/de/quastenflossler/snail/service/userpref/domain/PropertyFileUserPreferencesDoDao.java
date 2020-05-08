@@ -50,14 +50,13 @@ public class PropertyFileUserPreferencesDoDao implements UserPreferencesDao {
 
         try {
 
-            File test = new File(propertyFilePath.toURI());
+            File propertyFile = new File(propertyFilePath.toURI());
 
-            try (FileOutputStream outputStream = new FileOutputStream(test.toString())) {
+            try (FileOutputStream outputStream = new FileOutputStream(propertyFile.toString())) {
 
                 loadPropertiesFromFile();
                 properties.setProperty(KEY_LANGUAGE, preferences.getLanguage().toLanguageTag());
                 properties.store(outputStream, null);
-
             }
 
         } catch (URISyntaxException | IOException e) {

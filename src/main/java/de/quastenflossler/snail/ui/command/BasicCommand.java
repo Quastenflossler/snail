@@ -1,7 +1,9 @@
 package de.quastenflossler.snail.ui.command;
 
+import de.quastenflossler.snail.service.core.exception.InternalServiceException;
+
 public interface BasicCommand {
 
-    void execute();
+    void execute() throws InternalServiceException;
 
 }
