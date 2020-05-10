@@ -5,16 +5,21 @@ import javafx.stage.StageStyle;
 
 public enum SnailStage {
 
-    PRIMARY("Snail", StageStyle.UTILITY, Modality.NONE),
-    SETTINGS("Snail - Settings", StageStyle.DECORATED, Modality.APPLICATION_MODAL);
+    PRIMARY("Snail", 1024, 768, StageStyle.UTILITY, Modality.NONE),
+    SETTINGS("Snail - Settings", 0, 0, StageStyle.DECORATED, Modality.APPLICATION_MODAL);
 
     private String title;
+    private double minWidth;
+    private double minHeight;
     private StageStyle style;
     private Modality modality;
 
-    SnailStage(final String title, final StageStyle style, final Modality modality) {
+    SnailStage(final String title, final double minWidth, final double minHeight,
+               final StageStyle style, final Modality modality) {
 
         this.title = title;
+        this.minWidth = minWidth;
+        this.minHeight = minHeight;
         this.style = style;
         this.modality = modality;
     }
@@ -29,6 +34,14 @@ public enum SnailStage {
 
     public Modality getModality() {
         return modality;
+    }
+
+    public double getMinWidth() {
+        return minWidth;
+    }
+
+    public double getMinHeight() {
+        return minHeight;
     }
 
     @Override

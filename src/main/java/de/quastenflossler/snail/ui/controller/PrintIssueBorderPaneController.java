@@ -6,6 +6,9 @@ import de.quastenflossler.snail.ui.command.SnailCommandFactory;
 import de.quastenflossler.snail.ui.command.impl.DefaultSnailCommandFactory;
 import de.quastenflossler.snail.ui.command.impl.HandleExceptionCommand;
 import de.quastenflossler.snail.ui.command.impl.PrintIssueCommand;
+import de.quastenflossler.snail.ui.model.PrintIssueModel;
+import de.quastenflossler.snail.ui.stage.SnailScene;
+import de.quastenflossler.snail.ui.stage.SnailStageDirector;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
@@ -55,6 +58,23 @@ public class PrintIssueBorderPaneController {
     @Resource(name = DefaultSnailCommandFactory.RESOURCE_NAME)
     private SnailCommandFactory commandFactory;
 
+    @Resource(name = PrintIssueModel.RESOURCE_NAME)
+    private PrintIssueModel printIssueModel;
+
+    public void initialize() {
+
+        issueKeyTextField.textProperty().bindBidirectional(printIssueModel.issueKeyProperty());
+        issueTitleTextField.textProperty().bindBidirectional(printIssueModel.issueTitleProperty());
+        issueEpicKeyTextField.textProperty().bindBidirectional(printIssueModel.epicKeyProperty());
+        issueEpicTextField.textProperty().bindBidirectional(printIssueModel.epicNameProperty());
+        issueDescriptionTextArea.textProperty().bindBidirectional(printIssueModel.issueDescriptionProperty());
+        issueStakeholderTextField.textProperty().bindBidirectional(printIssueModel.stakeholderProperty());
+        issueStoryPointsChoiceBox.valueProperty().bindBidirectional(printIssueModel.storyPointsProperty());
+        issueAcceptanceCriteriaTextArea.textProperty().bindBidirectional(printIssueModel.acceptanceCriteriaProperty());
+        issuePlannedSprintTextField.textProperty().bindBidirectional(printIssueModel.plannedSprintProperty());
+        issueDeadlineTextField.textProperty().bindBidirectional(printIssueModel.deadlineProperty());
+    }
+
     public void handlePrintIssueAction() {
 
         try {
@@ -83,5 +103,24 @@ public class PrintIssueBorderPaneController {
 
             commandFactory.create(HandleExceptionCommand.class).execute(e, "Error during pdf creation.");
         }
+    }
+
+    public void handleShowPreviewAction() {
+
+        SnailStageDirector.getInstance().showScene(SnailScene.PRINT_ISSUE_WITH_PREVIEW);
+    }
+
+    public void handleFillWithExampleAction() {
+
+        printIssueModel.setEpicKey("EPC-123");
+        printIssueModel.setEpicName("My Project");
+        printIssueModel.setIssueKey("EPC-124");
+        printIssueModel.setIssueTitle("Some Customer needs an Awesome Feature");
+        printIssueModel.setIssueDescription("As user\nI need an awesome feature \nso I can do some awesome things.");
+        printIssueModel.setStoryPoints(5);
+        printIssueModel.setAcceptanceCriteria("This user story is solved when \n - feature is tested \n - feature is released to production");
+        printIssueModel.setStakeholder("user and THE MANAGER");
+        printIssueModel.setPlannedSprint("CW 17");
+        printIssueModel.setDeadline("20.04.2020");
     }
 }

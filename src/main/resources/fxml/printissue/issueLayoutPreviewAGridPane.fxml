@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.*?>
+
+<GridPane xmlns:fx="http://javafx.com/fxml"
+          fx:controller="de.quastenflossler.snail.ui.controller.PrintIssueBorderPaneController" vgap="5" hgap="5">
+
+    <padding>
+        <Insets top="25" right="25" bottom="25" left="25"/>
+    </padding>
+
+    <Label fx:id="issueKeyLabel" text="%issue.print.issuekey" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <TextField fx:id="issueKeyTextField" minWidth="150" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+    <Label fx:id="issueTitleLabel" text="%issue.print.issuetitle" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+    <TextField fx:id="issueTitleTextField" minWidth="150" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+</GridPane>
+
+

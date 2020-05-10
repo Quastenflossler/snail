@@ -103,6 +103,8 @@ public class SnailStageDirector {
         stageObject.setTitle(stage.getTitle());
         stageObject.setResizable(false);
         stageObject.initModality(stage.getModality());
+        stageObject.setMinWidth(stage.getMinWidth());
+        stageObject.setMinHeight(stage.getMinHeight());
 
         showScene(stageObject, scene);
         activeStage = stageObject;

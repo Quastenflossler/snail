@@ -3,7 +3,8 @@ package de.quastenflossler.snail.ui.stage;
 public enum SnailScene {
 
     HOMESCREEN("homescreen scene", "homescreenScene.fxml"),
-    PRINT_ISSUE("print issue scene", "printIssueScene.fxml"),
+    PRINT_ISSUE("print issue scene", "printissue/printIssueScene.fxml"),
+    PRINT_ISSUE_WITH_PREVIEW("print issue scene with preview", "printissue/printIssueWithPreviewScene.fxml"),
     SETTINGS("settings scene", "userprefScene.fxml");
 
     private String name;

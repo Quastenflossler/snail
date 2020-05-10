@@ -12,11 +12,11 @@
     <BorderPane>
 
         <top>
-            <fx:include source="mainMenuBar.fxml"/>
+            <fx:include source="../mainMenuBar.fxml"/>
         </top>
 
         <center>
-            <fx:include source="printIssueBorderPane.fxml"/>
+            <fx:include source="printIssueWithPreviewGridPane.fxml"/>
         </center>
 
     </BorderPane>

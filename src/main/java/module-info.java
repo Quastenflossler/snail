@@ -23,6 +23,7 @@ module quastenflossler.snail {
     exports de.quastenflossler.snail.service.issue to spring.beans;
     exports de.quastenflossler.snail.service.userpref to spring.beans;
     exports de.quastenflossler.snail.ui.control to javafx.fxml;
+    exports de.quastenflossler.snail.ui.model to spring.beans;
 
     opens de.quastenflossler.snail to spring.core;
     opens de.quastenflossler.snail.config to spring.core;

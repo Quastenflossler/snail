@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<GridPane id="printIssueWithPreviewGridPane" xmlns:fx="http://javafx.com/fxml" vgap="5" hgap="5">
+
+    <Pane GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <fx:include source="printIssueGridPane.fxml"/>
+    </Pane>
+
+    <Pane GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <fx:include source="issueLayoutPreviewAGridPane.fxml"/>
+    </Pane>
+
+</GridPane>
+
