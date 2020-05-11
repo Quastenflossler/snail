@@ -123,4 +123,18 @@ public class PrintIssueBorderPaneController {
         printIssueModel.setPlannedSprint("CW 17");
         printIssueModel.setDeadline("20.04.2020");
     }
+
+    public void handleDeleteAllFieldsAction() {
+
+        printIssueModel.setEpicKey("");
+        printIssueModel.setEpicName("");
+        printIssueModel.setIssueKey("");
+        printIssueModel.setIssueTitle("");
+        printIssueModel.setIssueDescription("");
+        printIssueModel.setStoryPoints(0);
+        printIssueModel.setAcceptanceCriteria("");
+        printIssueModel.setStakeholder("");
+        printIssueModel.setPlannedSprint("");
+        printIssueModel.setDeadline("");
+    }
 }
