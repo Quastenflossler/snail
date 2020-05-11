@@ -44,7 +44,7 @@ public class PrintIssueBorderPaneController {
     public TextField issueStakeholderTextField;
 
     @FXML
-    public ChoiceBox<Integer> issueStoryPointsChoiceBox;
+    public ChoiceBox<String> issueStoryPointsChoiceBox;
 
     @FXML
     public TextArea issueAcceptanceCriteriaTextArea;
@@ -80,20 +80,20 @@ public class PrintIssueBorderPaneController {
         try {
 
             BasicEpicTO epicTO = new BasicEpicTO();
-            epicTO.setKey(issueEpicKeyTextField.getText());
-            epicTO.setDescription(issueEpicTextField.getText());
+            epicTO.setKey(printIssueModel.getEpicKey());
+            epicTO.setDescription(printIssueModel.getEpicName());
 
             BasicIssueTO issueTO = new BasicIssueTO();
 
-            issueTO.setKey(issueKeyTextField.getText());
-            issueTO.setSummary(issueTitleTextField.getText());
-            issueTO.setDescription(issueDescriptionTextArea.getText());
+            issueTO.setKey(printIssueModel.getIssueKey());
+            issueTO.setSummary(printIssueModel.getIssueTitle());
+            issueTO.setDescription(printIssueModel.getIssueDescription());
             issueTO.setEpic(epicTO);
-            issueTO.setStoryPoints(issueStoryPointsChoiceBox.getValue());
-            issueTO.setAcceptanceCriteria(issueAcceptanceCriteriaTextArea.getText());
-            issueTO.setStakeholder(issueStakeholderTextField.getText());
-            issueTO.setPlannedSprint(issuePlannedSprintTextField.getText());
-            issueTO.setDeadline(issueDeadlineTextField.getText());
+            issueTO.setStoryPoints(printIssueModel.getConvertedStoryPoints());
+            issueTO.setAcceptanceCriteria(printIssueModel.getAcceptanceCriteria());
+            issueTO.setStakeholder(printIssueModel.getStakeholder());
+            issueTO.setPlannedSprint(printIssueModel.getPlannedSprint());
+            issueTO.setDeadline(printIssueModel.getDeadline());
 
             PrintIssueCommand printIssueCommand = commandFactory.create(PrintIssueCommand.class);
             printIssueCommand.setIssueTO(issueTO);
@@ -117,7 +117,7 @@ public class PrintIssueBorderPaneController {
         printIssueModel.setIssueKey("EPC-124");
         printIssueModel.setIssueTitle("Some Customer needs an Awesome Feature");
         printIssueModel.setIssueDescription("As user\nI need an awesome feature \nso I can do some awesome things.");
-        printIssueModel.setStoryPoints(5);
+        printIssueModel.setStoryPoints("5");
         printIssueModel.setAcceptanceCriteria("This user story is solved when \n - feature is tested \n - feature is released to production");
         printIssueModel.setStakeholder("user and THE MANAGER");
         printIssueModel.setPlannedSprint("CW 17");
@@ -131,7 +131,7 @@ public class PrintIssueBorderPaneController {
         printIssueModel.setIssueKey("");
         printIssueModel.setIssueTitle("");
         printIssueModel.setIssueDescription("");
-        printIssueModel.setStoryPoints(0);
+        printIssueModel.setStoryPoints("?");
         printIssueModel.setAcceptanceCriteria("");
         printIssueModel.setStakeholder("");
         printIssueModel.setPlannedSprint("");

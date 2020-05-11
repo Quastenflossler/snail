@@ -14,11 +14,16 @@ public class PrintIssueModel {
     private final StringProperty issueKey = new SimpleStringProperty();
     private final StringProperty issueTitle = new SimpleStringProperty();
     private final StringProperty issueDescription = new SimpleStringProperty();
-    private final ObjectProperty<Integer> storyPoints = new SimpleObjectProperty<>();
+    private final StringProperty storyPoints = new SimpleStringProperty();
     private final StringProperty acceptanceCriteria = new SimpleStringProperty();
     private final StringProperty stakeholder = new SimpleStringProperty();
     private final StringProperty plannedSprint = new SimpleStringProperty();
     private final StringProperty deadline = new SimpleStringProperty();
+
+    public PrintIssueModel() {
+
+        storyPoints.setValue("?");
+    }
 
     public String getEpicKey() {
         return epicKey.get();
@@ -80,15 +85,24 @@ public class PrintIssueModel {
         this.issueDescription.set(issueDescription);
     }
 
-    public Integer getStoryPoints() {
+    public String getStoryPoints() {
         return storyPoints.get();
     }
 
-    public ObjectProperty<Integer> storyPointsProperty() {
+    public Integer getConvertedStoryPoints() {
+
+        if ("?".equals(storyPoints.get())) {
+            return -1;
+        }
+
+        return Integer.valueOf(storyPoints.get());
+    }
+
+    public StringProperty storyPointsProperty() {
         return storyPoints;
     }
 
-    public void setStoryPoints(final Integer storyPoints) {
+    public void setStoryPoints(final String storyPoints) {
         this.storyPoints.set(storyPoints);
     }
 
