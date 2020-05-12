@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -18,6 +19,7 @@ public class SnailStageDirector {
     private static final Logger LOGGER = LoggerFactory.getLogger(SnailStageDirector.class);
     private static final String FXML_DIR = "/fxml/";
     private static final String I18N_BASE_NAME = "lang.snail_lang";
+    private static final String GLOBAL_STYLESHEET_FILE = "/css/style.css";
 
     private static SnailStageDirector INSTANCE;
 
@@ -69,7 +71,7 @@ public class SnailStageDirector {
         return scenes.get(scene.getName());
     }
 
-    public void init() throws IOException {
+    public void init() throws IOException, URISyntaxException {
 
         LOGGER.debug("[START] initialization of control manager");
 
@@ -147,7 +149,11 @@ public class SnailStageDirector {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXML_DIR + scene.getFxmlFile()));
             fxmlLoader.setControllerFactory(applicationContext::getBean);
             fxmlLoader.setResources(ResourceBundle.getBundle(I18N_BASE_NAME, activeLocale));
-            scenes.put(scene.getName(), fxmlLoader.load());
+
+            Scene loadedScene = fxmlLoader.load();
+            loadedScene.getStylesheets().add(getClass().getResource(GLOBAL_STYLESHEET_FILE).toExternalForm());
+
+            scenes.put(scene.getName(), loadedScene);
 
             LOGGER.debug("Scene \"{}\" loaded successfully", scene);
         }

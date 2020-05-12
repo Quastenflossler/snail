@@ -3,3 +3,9 @@
     -fx-font-weight: bold;
     -fx-text-fill: #333333;
 }
+
+.pane-with-border {
+    -fx-background-fill: black, white ;
+    -fx-background-insets: 0, 4 ;
+    -fx-font-size: 20px;
+}

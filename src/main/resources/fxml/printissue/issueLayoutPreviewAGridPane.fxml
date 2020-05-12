@@ -2,21 +2,29 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 
 <GridPane xmlns:fx="http://javafx.com/fxml"
-          fx:controller="de.quastenflossler.snail.ui.controller.PrintIssueBorderPaneController" vgap="5" hgap="5">
+          fx:controller="de.quastenflossler.snail.ui.controller.PrintIssuePreviewGridPaneController" vgap="5" hgap="5"
+          minWidth="350" minHeight="500" prefWidth="350" prefHeight="500" >
 
     <padding>
-        <Insets top="25" right="25" bottom="25" left="25"/>
+        <Insets top="25" right="5" bottom="25" left="5"/>
     </padding>
 
-    <Label fx:id="issueKeyLabel" text="%issue.print.issuekey" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-    <TextField fx:id="issueKeyTextField" minWidth="150" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+    <Pane GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="pane-with-border">
+        <Label text="Summary" underline="true" />
+    </Pane>
 
-    <Label fx:id="issueTitleLabel" text="%issue.print.issuetitle" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-    <TextField fx:id="issueTitleTextField" minWidth="150" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+    <Pane GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="pane-with-border">
+        <Label fx:id="previewIssueTitleLabel"  />
+    </Pane>
+
+    <Pane GridPane.columnIndex="1" GridPane.rowIndex="1" styleClass="pane-with-border">
+        <ImageView fx:id="previewIssueLogo" />
+    </Pane>
+
 
 </GridPane>
 

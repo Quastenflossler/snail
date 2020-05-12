@@ -19,6 +19,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Import;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Locale;
 
 @SpringBootApplication
@@ -30,7 +31,7 @@ public class SnailJavaFxClient extends Application {
     private ConfigurableApplicationContext applicationContext;
 
     @Override
-    public void init() throws IOException, InternalServiceException {
+    public void init() throws IOException, InternalServiceException, URISyntaxException {
 
         LOGGER.debug("[START] Client will be initialized...");
 
