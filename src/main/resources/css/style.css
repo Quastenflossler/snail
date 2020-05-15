@@ -4,8 +4,32 @@
     -fx-text-fill: #333333;
 }
 
-.pane-with-border {
-    -fx-background-fill: black, white ;
-    -fx-background-insets: 0, 4 ;
-    -fx-font-size: 20px;
+.pane_with_border {
+    -fx-border-color: black;
+    -fx-border-width: 2;
+}
+
+.center {
+    -fx-alignment: center;
+    -fx-halignment: center;
+    -fx-valignment: center;
+}
+
+.test {
+
+    -fx-padding: 10 10 10 10;
+    -fx-alignment: center;
+    -fx-border-insets: 10 10 10 10;
+}
+
+.blub {
+    -fx-font: bold italic 18pt "Arial";
+}
+
+#subtitle
+{
+    -fx-font: bold italic 18pt "Arial";
+    -fx-text-alignment: center;
+    -fx-effect: dropshadow( one-pass-box, black, 8, 0.0, 2, 0 );
+    -fx-text-fill: #1ebd1e;
 }

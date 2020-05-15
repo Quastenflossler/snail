@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.Scene?>
 
-<Scene fx:controller="de.quastenflossler.snail.ui.controller.HomescreenSceneController" width="1024" height="768" xmlns:fx="http://javafx.com/fxml">
+<Scene fx:controller="de.quastenflossler.snail.ui.controller.HomescreenSceneController" xmlns:fx="http://javafx.com/fxml">
 
     <BorderPane>
 

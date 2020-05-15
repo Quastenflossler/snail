@@ -6,25 +6,127 @@
 <?import javafx.scene.layout.*?>
 
 <GridPane xmlns:fx="http://javafx.com/fxml"
-          fx:controller="de.quastenflossler.snail.ui.controller.PrintIssuePreviewGridPaneController" vgap="5" hgap="5"
-          minWidth="350" minHeight="500" prefWidth="350" prefHeight="500" >
+          fx:controller="de.quastenflossler.snail.ui.controller.PrintIssuePreviewGridPaneController">
 
     <padding>
-        <Insets top="25" right="5" bottom="25" left="5"/>
+        <Insets top="25" right="25" bottom="25" left="5"/>
     </padding>
 
-    <Pane GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="pane-with-border">
-        <Label text="Summary" underline="true" />
+    <Pane GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="3" styleClass="pane_with_border">
+        <VBox>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label text="Summary:" underline="true"/>
+            <Label fx:id="previewIssueTitleLabel"/>
+        </VBox>
     </Pane>
 
-    <Pane GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="pane-with-border">
-        <Label fx:id="previewIssueTitleLabel"  />
+    <BorderPane GridPane.columnIndex="3" GridPane.rowIndex="1" styleClass="pane_with_border" >
+        <center>
+            <ImageView fx:id="previewIssueLogo"/>
+        </center>
+    </BorderPane>
+
+    <Pane GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="pane_with_border">
+        <VBox>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label text="Issue Key:" underline="true"/>
+            <Label fx:id="previewIssueKeyLabel"/>
+        </VBox>
     </Pane>
 
-    <Pane GridPane.columnIndex="1" GridPane.rowIndex="1" styleClass="pane-with-border">
-        <ImageView fx:id="previewIssueLogo" />
+    <Pane GridPane.columnIndex="1" GridPane.rowIndex="2" styleClass="pane_with_border">
+        <VBox>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label text="Epic Key:" underline="true"/>
+            <Label fx:id="previewEpicKeyLabel"/>
+        </VBox>
     </Pane>
 
+    <Pane GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.columnSpan="2" styleClass="pane_with_border">
+        <VBox>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label text="Epic Name:" underline="true"/>
+            <Label fx:id="previewEpicNameLabel"/>
+        </VBox>
+    </Pane>
+
+    <Pane GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="2" styleClass="pane_with_border">
+        <VBox>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label text="Stakeholder:" underline="true"/>
+            <Label fx:id="previewStakeholderLabel"/>
+        </VBox>
+    </Pane>
+
+    <Pane GridPane.columnIndex="2" GridPane.rowIndex="3" styleClass="pane_with_border">
+        <VBox>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label text="Planned Sprint:" underline="true"/>
+            <Label fx:id="previewPlannedSprintLabel"/>
+        </VBox>
+    </Pane>
+
+    <Pane GridPane.columnIndex="3" GridPane.rowIndex="3" styleClass="pane_with_border">
+        <VBox>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label text="Deadline:" underline="true"/>
+            <Label fx:id="previewDeadlineLabel"/>
+        </VBox>
+    </Pane>
+
+    <Pane GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="3" styleClass="pane_with_border">
+        <VBox>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label text="Description:" underline="true"/>
+            <Label fx:id="previewDescriptionLabel"/>
+        </VBox>
+    </Pane>
+
+    <Pane GridPane.columnIndex="3" GridPane.rowIndex="4" styleClass="pane_with_border">
+        <VBox alignment="TOP_CENTER">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label text="Story Points:" underline="true"/>
+            <Label fx:id="previewStoryPointsLabel"/>
+        </VBox>
+    </Pane>
+
+    <Pane GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="4" styleClass="pane_with_border">
+        <VBox>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label text="Acceptance Criteria:" underline="true"/>
+            <Label fx:id="previewAcceptanceCriteriaLabel"/>
+        </VBox>
+    </Pane>
 
 </GridPane>
 
