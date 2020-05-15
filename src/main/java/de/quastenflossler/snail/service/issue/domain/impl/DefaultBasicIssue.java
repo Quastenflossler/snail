@@ -1,8 +1,13 @@
 package de.quastenflossler.snail.service.issue.domain.impl;
 
+import de.quastenflossler.snail.service.core.exception.DataValidationServiceException;
 import de.quastenflossler.snail.service.issue.domain.BasicEpic;
 import de.quastenflossler.snail.service.issue.domain.BasicIssue;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+@Component
+@Scope(value = "prototype")
 public class DefaultBasicIssue implements BasicIssue {
 
     private String key;
@@ -90,6 +95,11 @@ public class DefaultBasicIssue implements BasicIssue {
     @Override
     public String getDeadline() {
         return deadline;
+    }
+
+    @Override
+    public void validate() {
+
     }
 
     public void setDeadline(final String deadline) {

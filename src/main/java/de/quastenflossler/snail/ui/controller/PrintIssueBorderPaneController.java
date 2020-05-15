@@ -119,7 +119,7 @@ public class PrintIssueBorderPaneController {
         printIssueModel.setIssueDescription("As user\nI need an awesome feature \nso I can do some awesome things.");
         printIssueModel.setStoryPoints("5");
         printIssueModel.setAcceptanceCriteria("This user story is solved when \n - feature is tested \n - feature is released to production");
-        printIssueModel.setStakeholder("user and THE MANAGER");
+        printIssueModel.setStakeholder("THE MANAGER");
         printIssueModel.setPlannedSprint("CW 17");
         printIssueModel.setDeadline("20.04.2020");
     }

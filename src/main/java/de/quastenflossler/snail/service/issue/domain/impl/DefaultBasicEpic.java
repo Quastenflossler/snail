@@ -1,7 +1,11 @@
 package de.quastenflossler.snail.service.issue.domain.impl;
 
 import de.quastenflossler.snail.service.issue.domain.BasicEpic;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+@Component
+@Scope(value = "prototype")
 public class DefaultBasicEpic implements BasicEpic {
 
     private String key;

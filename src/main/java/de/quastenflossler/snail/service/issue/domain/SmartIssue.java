@@ -1,11 +1,9 @@
 package de.quastenflossler.snail.service.issue.domain;
 
-import com.itextpdf.text.DocumentException;
-
-import java.io.File;
-import java.io.IOException;
+import de.quastenflossler.snail.service.core.exception.DataValidationServiceException;
+import de.quastenflossler.snail.service.core.exception.InternalServiceException;
 
 public interface SmartIssue extends BasicIssue {
 
-    File printAsPdf() throws IOException, DocumentException;
+    String createPdf() throws InternalServiceException, DataValidationServiceException;
 }

@@ -1,5 +1,6 @@
 package de.quastenflossler.snail.service.core.domain.impl;
 
+import de.quastenflossler.snail.config.SpringConfig;
 import de.quastenflossler.snail.service.core.domain.DomainObjectMapper;
 import de.quastenflossler.snail.service.issue.domain.BasicEpic;
 import de.quastenflossler.snail.service.issue.domain.BasicIssue;
@@ -20,7 +21,7 @@ public class DefaultDomainObjectMapper implements DomainObjectMapper {
     @Override
     public BasicEpic createEpic(final BasicEpicTO epicTO) {
 
-        DefaultBasicEpic epic = new DefaultBasicEpic();
+        DefaultBasicEpic epic = SpringConfig.getBean(DefaultBasicEpic.class);
 
         epic.setKey(epicTO.getKey());
         epic.setDescription(epicTO.getDescription());
@@ -31,7 +32,7 @@ public class DefaultDomainObjectMapper implements DomainObjectMapper {
     @Override
     public BasicIssue createIssue(final BasicIssueTO issueTO) {
 
-        DefaultBasicIssue issue = new DefaultBasicIssue();
+        DefaultBasicIssue issue = SpringConfig.getBean(DefaultBasicIssue.class);
 
         issue.setKey(issueTO.getKey());
         issue.setSummary(issueTO.getSummary());
@@ -49,7 +50,7 @@ public class DefaultDomainObjectMapper implements DomainObjectMapper {
     @Override
     public SmartIssue createSmartIssue(final BasicIssueTO issueTO) {
 
-        DefaultSmartIssue issue = new DefaultSmartIssue();
+        DefaultSmartIssue issue = SpringConfig.getBean(DefaultSmartIssue.class);
 
         issue.setKey(issueTO.getKey());
         issue.setSummary(issueTO.getSummary());

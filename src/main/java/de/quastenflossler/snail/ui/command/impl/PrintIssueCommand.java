@@ -1,5 +1,6 @@
 package de.quastenflossler.snail.ui.command.impl;
 
+import de.quastenflossler.snail.service.core.exception.DataValidationServiceException;
 import de.quastenflossler.snail.service.core.exception.InternalServiceException;
 import de.quastenflossler.snail.service.issue.DefaultIssueService;
 import de.quastenflossler.snail.service.issue.IssueService;
@@ -28,7 +29,7 @@ public class PrintIssueCommand implements BasicCommand {
     }
 
     @Override
-    public void execute() throws InternalServiceException {
+    public void execute() throws InternalServiceException, DataValidationServiceException {
 
         issueService.printIssue(issueTO);
     }

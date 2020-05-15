@@ -1,5 +1,7 @@
 package de.quastenflossler.snail.service.issue.domain;
 
+import de.quastenflossler.snail.service.core.exception.DataValidationServiceException;
+
 public interface BasicIssue {
 
     String getKey();
@@ -19,4 +21,6 @@ public interface BasicIssue {
     String getPlannedSprint();
 
     String getDeadline();
+
+    void validate() throws DataValidationServiceException;
 }

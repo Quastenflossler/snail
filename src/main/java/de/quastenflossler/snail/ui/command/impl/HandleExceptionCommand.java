@@ -1,7 +1,9 @@
 package de.quastenflossler.snail.ui.command.impl;
 
+import de.quastenflossler.snail.service.core.exception.DataValidationServiceException;
 import de.quastenflossler.snail.ui.command.BasicCommand;
 import de.quastenflossler.snail.ui.control.ExceptionDialog;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,6 +43,25 @@ public class HandleExceptionCommand implements BasicCommand {
             LOGGER.error(message, throwable);
         }
 
+        if (throwable instanceof DataValidationServiceException) {
+
+            showWarningDialog(throwable.getMessage());
+
+        } else {
+
+            showExceptionDialog();
+        }
+    }
+
+    public void execute(final Throwable throwable, final String message) {
+
+        this.throwable = throwable;
+        this.message = message;
+        execute();
+    }
+
+    private void showExceptionDialog() {
+
         ExceptionDialog exceptionDialog = new ExceptionDialog(throwable);
         exceptionDialog.showAndWait();
 
@@ -50,10 +71,13 @@ public class HandleExceptionCommand implements BasicCommand {
         }
     }
 
-    public void execute(final Throwable throwable, final String message) {
+    private void showWarningDialog(final String message) {
 
-        this.throwable = throwable;
-        this.message = message;
-        execute();
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Snail - Warning");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+
+        alert.showAndWait();
     }
 }
