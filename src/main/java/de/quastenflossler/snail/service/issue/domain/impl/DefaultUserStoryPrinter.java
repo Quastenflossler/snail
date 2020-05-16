@@ -73,10 +73,7 @@ public class DefaultUserStoryPrinter implements UserStoryPrinter {
 
         table.addCell(titleCell);
 
-        URL ingoFilePath = getClass().getResource("/assets/ingo.png");
-        File ingoFile = new File(ingoFilePath.toURI());
-        LOGGER.info(ingoFile.toString());
-        Image logoImage = Image.getInstance(ingoFilePath.toString());
+        Image logoImage = Image.getInstance(getClass().getResource("/assets/ingo.png"));
         table.addCell(createCell(logoImage, Element.ALIGN_CENTER, Element.ALIGN_MIDDLE));
 
         table.addCell(createCellWithHint(issue.getKey(), "Issue Key:", Element.ALIGN_LEFT, Element.ALIGN_MIDDLE, Element.ALIGN_LEFT, Element.ALIGN_MIDDLE, 1, 5, 10));

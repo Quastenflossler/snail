@@ -9,8 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.inject.Named;
 import java.io.*;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Locale;
 import java.util.Properties;
 
@@ -20,7 +18,7 @@ public class PropertyFileUserPreferencesDoDao implements UserPreferencesDao {
     public static final String RESOURCE_NAME = "PropertyFileUserPreferencesDoDao";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PropertyFileUserPreferencesDoDao.class);
-    private static final String SNAIL_PROPERTIES_FILE = "snail.properties";
+    private static final String DEFAULT_SNAIL_PROPERTIES_FILE = "default-snail.properties";
     private static final String KEY_LANGUAGE = "language";
     private static final String KEY_EXPORT_PATH = "exportpath";
 
@@ -34,12 +32,12 @@ public class PropertyFileUserPreferencesDoDao implements UserPreferencesDao {
             loadPropertiesFromFile();
 
             UserPreferencesTO preferences = new UserPreferencesTO();
-            preferences.setLanguage(loadLocale());
+            preferences.setLanguage(getLocale());
             preferences.setExportPath(properties.getProperty(KEY_EXPORT_PATH));
 
             return preferences;
 
-        } catch (IOException | URISyntaxException e) {
+        } catch (IOException e) {
             throw new InternalServiceException("Loading of user preferences failed", e);
         }
     }
@@ -47,38 +45,45 @@ public class PropertyFileUserPreferencesDoDao implements UserPreferencesDao {
     @Override
     public void saveUserPreferences(final UserPreferencesTO preferences) throws InternalServiceException {
 
-        URL propertyFilePath = this.getClass().getClassLoader().getResource(SNAIL_PROPERTIES_FILE);
-
         try {
 
-            File propertyFile = new File(propertyFilePath.toURI());
+            File propertyFile = new File("./snail.properties");
+
+            LOGGER.debug("properties will be saved to {}", propertyFile.toString());
 
             try (FileOutputStream outputStream = new FileOutputStream(propertyFile.toString())) {
 
-                loadPropertiesFromFile();
                 properties.setProperty(KEY_LANGUAGE, preferences.getLanguage().toLanguageTag());
                 properties.setProperty(KEY_EXPORT_PATH, preferences.getExportPath());
                 properties.store(outputStream, null);
             }
 
-        } catch (URISyntaxException | IOException e) {
+        } catch (IOException e) {
             throw new InternalServiceException("Error during saving of user preferences", e);
         }
     }
 
-    private void loadPropertiesFromFile() throws IOException, URISyntaxException {
-
-//        if (properties != null) {
-//            return;
-//        }
+    private void loadPropertiesFromFile() throws IOException {
 
         StopWatch stopwatch = new StopWatch();
         stopwatch.start();
 
-        URL propertyFileUrl = this.getClass().getClassLoader().getResource(SNAIL_PROPERTIES_FILE);
-        File propertyFile = new File(propertyFileUrl.toURI());
+        File bla = new File("./snail.properties");
 
-        try (InputStream inputStream = new FileInputStream(propertyFile);) {
+        if (bla.exists() && !bla.isDirectory()) {
+
+            try (InputStream inputStream = new FileInputStream("./snail.properties")) {
+
+                properties = new Properties();
+                properties.load(inputStream);
+            }
+
+            stopwatch.stop();
+            LOGGER.debug("User properties {} loaded in {}ms", properties, stopwatch.getTime());
+            return;
+        }
+
+        try (InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(DEFAULT_SNAIL_PROPERTIES_FILE)) {
 
             properties = new Properties();
             properties.load(inputStream);
@@ -90,11 +95,11 @@ public class PropertyFileUserPreferencesDoDao implements UserPreferencesDao {
             }
 
             stopwatch.stop();
-            LOGGER.debug("Properties {} loaded from {} in {}ms", properties, propertyFile.toString(), stopwatch.getTime());
+            LOGGER.debug("Default properties {} loaded in {}ms", properties, stopwatch.getTime());
         }
     }
 
-    private Locale loadLocale() {
+    private Locale getLocale() {
 
         String language = properties.getProperty(KEY_LANGUAGE);
         return Locale.forLanguageTag(language);

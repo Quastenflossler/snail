@@ -57,6 +57,8 @@ public class UserPrefSceneController {
             saveUserPreferencesCommand.setUserPreferences(preferencesTO);
             saveUserPreferencesCommand.execute();
 
+            SnailStageDirector.getInstance().closeActiveStage();
+
         } catch (InternalServiceException | DataValidationServiceException e) {
             commandFactory.create(HandleExceptionCommand.class).execute(e, "Error during pdf creation.");
         }
