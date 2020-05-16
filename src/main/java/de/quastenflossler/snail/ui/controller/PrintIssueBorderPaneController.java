@@ -7,6 +7,7 @@ import de.quastenflossler.snail.ui.command.impl.DefaultSnailCommandFactory;
 import de.quastenflossler.snail.ui.command.impl.HandleExceptionCommand;
 import de.quastenflossler.snail.ui.command.impl.PrintIssueCommand;
 import de.quastenflossler.snail.ui.model.PrintIssueModel;
+import de.quastenflossler.snail.ui.model.UserPreferencesModel;
 import de.quastenflossler.snail.ui.stage.SnailScene;
 import de.quastenflossler.snail.ui.stage.SnailStageDirector;
 import javafx.fxml.FXML;
@@ -61,6 +62,9 @@ public class PrintIssueBorderPaneController {
     @Resource(name = PrintIssueModel.RESOURCE_NAME)
     private PrintIssueModel printIssueModel;
 
+    @Resource(name = UserPreferencesModel.RESOURCE_NAME)
+    private UserPreferencesModel userPreferencesModel;
+
     public void initialize() {
 
         issueKeyTextField.textProperty().bindBidirectional(printIssueModel.issueKeyProperty());
@@ -97,6 +101,7 @@ public class PrintIssueBorderPaneController {
 
             PrintIssueCommand printIssueCommand = commandFactory.create(PrintIssueCommand.class);
             printIssueCommand.setIssueTO(issueTO);
+            printIssueCommand.setExportPath(userPreferencesModel.getExportPath());
             printIssueCommand.execute();
 
         } catch (Exception e) {

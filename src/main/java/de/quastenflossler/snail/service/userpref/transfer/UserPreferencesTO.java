@@ -9,6 +9,7 @@ public class UserPreferencesTO extends AbstractTransferObject {
     private static final long serialVersionUID = 4882795078626556699L;
 
     private Locale language;
+    private String exportPath;
 
     public Locale getLanguage() {
         return language;
@@ -18,4 +19,11 @@ public class UserPreferencesTO extends AbstractTransferObject {
         this.language = language;
     }
 
+    public String getExportPath() {
+        return exportPath;
+    }
+
+    public void setExportPath(final String exportPath) {
+        this.exportPath = exportPath;
+    }
 }

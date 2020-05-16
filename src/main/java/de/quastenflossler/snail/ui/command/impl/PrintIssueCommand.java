@@ -16,6 +16,7 @@ import javax.annotation.Resource;
 public class PrintIssueCommand implements BasicCommand {
 
     private BasicIssueTO issueTO;
+    private String exportPath;
 
     @Resource(name = DefaultIssueService.RESOURCE_NAME)
     private IssueService issueService;
@@ -28,9 +29,17 @@ public class PrintIssueCommand implements BasicCommand {
         this.issueTO = issueTO;
     }
 
+    public String getExportPath() {
+        return exportPath;
+    }
+
+    public void setExportPath(final String exportPath) {
+        this.exportPath = exportPath;
+    }
+
     @Override
     public void execute() throws InternalServiceException, DataValidationServiceException {
 
-        issueService.printIssue(issueTO);
+        issueService.createPdfFromIssue(issueTO, exportPath);
     }
 }

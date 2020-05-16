@@ -3,24 +3,18 @@ package de.quastenflossler.snail;
 import de.quastenflossler.snail.config.SpringConfig;
 import de.quastenflossler.snail.config.SpringContextFactory;
 import de.quastenflossler.snail.service.core.exception.InternalServiceException;
-import de.quastenflossler.snail.service.userpref.DefaultUserPreferencesService;
-import de.quastenflossler.snail.service.userpref.UserPreferenceService;
+import de.quastenflossler.snail.ui.command.impl.SetupApplicationCommand;
+import de.quastenflossler.snail.ui.stage.SnailScene;
 import de.quastenflossler.snail.ui.stage.SnailStage;
 import de.quastenflossler.snail.ui.stage.SnailStageDirector;
-import de.quastenflossler.snail.ui.stage.SnailScene;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import org.apache.commons.lang3.time.StopWatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Import;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.Locale;
 
 @SpringBootApplication
 @Import(SpringConfig.class)
@@ -31,7 +25,7 @@ public class SnailJavaFxClient extends Application {
     private ConfigurableApplicationContext applicationContext;
 
     @Override
-    public void init() throws IOException, InternalServiceException, URISyntaxException {
+    public void init() throws InternalServiceException {
 
         LOGGER.debug("[START] Client will be initialized...");
 
@@ -44,11 +38,8 @@ public class SnailJavaFxClient extends Application {
 
         SnailStageDirector.getInstance().setApplicationContext(applicationContext);
 
-        UserPreferenceService userPreferencesService = (UserPreferenceService) SpringConfig.getBean(DefaultUserPreferencesService.RESOURCE_NAME);
-        Locale loadedLocale = userPreferencesService.findUserPreferences().getLanguage();
-        SnailStageDirector.getInstance().setActiveLocale(loadedLocale);
-
-        SnailStageDirector.getInstance().init();
+        SetupApplicationCommand setupApplicationCommand = SpringConfig.getBean(SetupApplicationCommand.class);
+        setupApplicationCommand.execute();
 
         stopWatch.stop();
         LOGGER.debug("[END] Client will be initialized... | Duration: {}ms", stopWatch.getTime());

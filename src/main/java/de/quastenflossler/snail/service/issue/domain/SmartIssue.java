@@ -5,5 +5,5 @@ import de.quastenflossler.snail.service.core.exception.InternalServiceException;
 
 public interface SmartIssue extends BasicIssue {
 
-    String createPdf() throws InternalServiceException, DataValidationServiceException;
+    String createPdf(String exportPath) throws InternalServiceException, DataValidationServiceException;
 }

@@ -2,18 +2,17 @@ package de.quastenflossler.snail.service.userpref.domain;
 
 import de.quastenflossler.snail.service.core.exception.InternalServiceException;
 import de.quastenflossler.snail.service.userpref.transfer.UserPreferencesTO;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.StopWatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Named;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.*;
+import java.util.Locale;
+import java.util.Properties;
 
 @Named(value = PropertyFileUserPreferencesDoDao.RESOURCE_NAME)
 public class PropertyFileUserPreferencesDoDao implements UserPreferencesDao {
@@ -23,6 +22,7 @@ public class PropertyFileUserPreferencesDoDao implements UserPreferencesDao {
     private static final Logger LOGGER = LoggerFactory.getLogger(PropertyFileUserPreferencesDoDao.class);
     private static final String SNAIL_PROPERTIES_FILE = "snail.properties";
     private static final String KEY_LANGUAGE = "language";
+    private static final String KEY_EXPORT_PATH = "exportpath";
 
     private Properties properties;
 
@@ -35,10 +35,11 @@ public class PropertyFileUserPreferencesDoDao implements UserPreferencesDao {
 
             UserPreferencesTO preferences = new UserPreferencesTO();
             preferences.setLanguage(loadLocale());
+            preferences.setExportPath(properties.getProperty(KEY_EXPORT_PATH));
 
             return preferences;
 
-        } catch (IOException e) {
+        } catch (IOException | URISyntaxException e) {
             throw new InternalServiceException("Loading of user preferences failed", e);
         }
     }
@@ -56,6 +57,7 @@ public class PropertyFileUserPreferencesDoDao implements UserPreferencesDao {
 
                 loadPropertiesFromFile();
                 properties.setProperty(KEY_LANGUAGE, preferences.getLanguage().toLanguageTag());
+                properties.setProperty(KEY_EXPORT_PATH, preferences.getExportPath());
                 properties.store(outputStream, null);
             }
 
@@ -64,22 +66,31 @@ public class PropertyFileUserPreferencesDoDao implements UserPreferencesDao {
         }
     }
 
-    private void loadPropertiesFromFile() throws IOException {
+    private void loadPropertiesFromFile() throws IOException, URISyntaxException {
 
-        if (properties != null) {
-            return;
-        }
+//        if (properties != null) {
+//            return;
+//        }
 
         StopWatch stopwatch = new StopWatch();
         stopwatch.start();
 
-        try (InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(SNAIL_PROPERTIES_FILE)) {
+        URL propertyFileUrl = this.getClass().getClassLoader().getResource(SNAIL_PROPERTIES_FILE);
+        File propertyFile = new File(propertyFileUrl.toURI());
+
+        try (InputStream inputStream = new FileInputStream(propertyFile);) {
 
             properties = new Properties();
             properties.load(inputStream);
 
+            String exportPath = properties.getProperty(KEY_EXPORT_PATH);
+
+            if (StringUtils.isEmpty(exportPath)) {
+                properties.setProperty(KEY_EXPORT_PATH, System.getProperty("user.home"));
+            }
+
             stopwatch.stop();
-            LOGGER.debug("Properties loaded in {}ms", stopwatch.getTime());
+            LOGGER.debug("Properties {} loaded from {} in {}ms", properties, propertyFile.toString(), stopwatch.getTime());
         }
     }
 

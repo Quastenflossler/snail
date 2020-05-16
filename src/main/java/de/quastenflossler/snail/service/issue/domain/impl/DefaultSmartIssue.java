@@ -21,9 +21,9 @@ public class DefaultSmartIssue extends DefaultBasicIssue implements SmartIssue {
     private UserStoryPrinter userStoryPrinter;
 
     @Override
-    public String createPdf() throws InternalServiceException, DataValidationServiceException {
+    public String createPdf(String exportPath) throws InternalServiceException, DataValidationServiceException {
 
-        return userStoryPrinter.createPdf(this, UserStoryLayout.DOUBLE_SIDED);
+        return userStoryPrinter.createPdf(this, UserStoryLayout.DOUBLE_SIDED, exportPath);
     }
 
 }

@@ -9,6 +9,11 @@
     -fx-border-width: 2;
 }
 
+.default_box {
+    -fx-spacing: 5;
+    -fx-padding: 5;
+}
+
 #homescreen_title {
     -fx-font: 100px Tahoma;
     -fx-text-fill: linear-gradient(from 25% 25% to 75% 75%, aqua, black);

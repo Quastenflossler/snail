@@ -6,5 +6,5 @@ import de.quastenflossler.snail.service.issue.transfer.BasicIssueTO;
 
 public interface IssueService {
 
-    void printIssue(BasicIssueTO issueTO) throws InternalServiceException, DataValidationServiceException;
+    String createPdfFromIssue(BasicIssueTO issueTO, String exportPath) throws InternalServiceException, DataValidationServiceException;
 }

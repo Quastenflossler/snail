@@ -26,25 +26,30 @@ public class DefaultUserStoryPrinter implements UserStoryPrinter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DefaultUserStoryPrinter.class);
 
+    private static final String FILE_EXTENSION_PDF = ".pdf";
+
     @Override
-    public String createPdf(final BasicIssue issue, final UserStoryLayout layout) throws InternalServiceException, DataValidationServiceException {
+    public String createPdf(final BasicIssue issue, final UserStoryLayout layout, final String exportPath)
+            throws InternalServiceException, DataValidationServiceException {
 
         try {
 
-            return try_createPdf(issue, layout);
+            return try_createPdf(issue, layout, exportPath);
 
         } catch (DocumentException | IOException | URISyntaxException e) {
             throw new InternalServiceException("Pdf creation failed!", e);
         }
     }
 
-    private String try_createPdf(final BasicIssue issue, final UserStoryLayout layout) throws IOException, DocumentException, URISyntaxException, DataValidationServiceException {
+    private String try_createPdf(final BasicIssue issue, final UserStoryLayout layout, final String exportPath) throws IOException, DocumentException, URISyntaxException, DataValidationServiceException {
 
         validateIssueContent(issue);
 
         Document document = new Document(PageSize.A5);
 
-        String fileName = issue.getKey() + ".pdf";
+        String fileName = exportPath + "\\" + issue.getKey() + FILE_EXTENSION_PDF;
+        LOGGER.debug("pdf will be saved to {}", fileName);
+
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(fileName));
         document.open();
 
@@ -99,6 +104,8 @@ public class DefaultUserStoryPrinter implements UserStoryPrinter {
 
         document.close();
         writer.close();
+
+        LOGGER.debug("pdf saved to {}", fileName);
 
         File file = new File(fileName);
         return file.toString();

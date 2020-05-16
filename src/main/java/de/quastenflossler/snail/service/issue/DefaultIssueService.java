@@ -19,9 +19,9 @@ public class DefaultIssueService implements IssueService {
     private DomainObjectMapper domainObjectMapper;
 
     @Override
-    public void printIssue(final BasicIssueTO issueTO) throws InternalServiceException, DataValidationServiceException {
+    public String createPdfFromIssue(final BasicIssueTO issueTO, final String exportPath) throws InternalServiceException, DataValidationServiceException {
 
         SmartIssue issue = domainObjectMapper.createSmartIssue(issueTO);
-        issue.createPdf();
+        return issue.createPdf(exportPath);
     }
 }
