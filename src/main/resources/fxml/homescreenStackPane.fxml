@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<StackPane fx:controller="de.quastenflossler.snail.ui.controller.HomescreenSceneController" xmlns:fx="http://javafx.com/fxml"
+           minWidth="500" minHeight="500">
+
+        <BorderPane>
+
+            <center>
+                <HBox alignment="CENTER">
+                    <VBox alignment="CENTER" spacing="-20">
+                        <Label text="- Snail -" fx:id="homescreen_title"/>
+                        <Label text="by Quastenflossler"/>
+                    </VBox>
+                </HBox>
+            </center>
+
+        </BorderPane>
+
+</StackPane>

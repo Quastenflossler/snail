@@ -9,27 +9,28 @@
     -fx-border-width: 2;
 }
 
-.center {
-    -fx-alignment: center;
-    -fx-halignment: center;
-    -fx-valignment: center;
-}
-
-.test {
-
-    -fx-padding: 10 10 10 10;
-    -fx-alignment: center;
-    -fx-border-insets: 10 10 10 10;
-}
-
-.blub {
-    -fx-font: bold italic 18pt "Arial";
+#homescreen_title {
+    -fx-font: 100px Tahoma;
+    -fx-text-fill: linear-gradient(from 25% 25% to 75% 75%, aqua, black);
+    -fx-stroke: white;
+    -fx-stroke-width: 5;
 }
 
 #subtitle
 {
-    -fx-font: bold italic 18pt "Arial";
+    -fx-font: bold italic 36pt "Arial";
     -fx-text-alignment: center;
     -fx-effect: dropshadow( one-pass-box, black, 8, 0.0, 2, 0 );
     -fx-text-fill: #1ebd1e;
+}
+
+/*"Segoe UI Semibold";
+/*Aclonica
+
+#homescreen_title1 {
+    -fx-font-size: 48pt;
+    -fx-font-family: "Tahoma";
+    -fx-text-fill: black;
+    -fx-opacity: 1;
+    -fx-font-weight: bold;
 }

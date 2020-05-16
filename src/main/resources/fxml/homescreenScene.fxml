@@ -11,9 +11,9 @@
             <fx:include source="mainMenuBar.fxml"/>
         </top>
 
-<!--        <center>-->
-<!--            <fx:include source="printIssueBorderPane.fxml"/>-->
-<!--        </center>-->
+        <center>
+            <fx:include source="homescreenStackPane.fxml"/>
+        </center>
 
     </BorderPane>
 
