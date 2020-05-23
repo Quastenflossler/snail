@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.inject.Named;
 import java.io.*;
+import java.time.LocalDate;
 import java.util.Locale;
 import java.util.Properties;
 
@@ -18,9 +19,14 @@ public class PropertyFileUserPreferencesDoDao implements UserPreferencesDao {
     public static final String RESOURCE_NAME = "PropertyFileUserPreferencesDoDao";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PropertyFileUserPreferencesDoDao.class);
+
     private static final String DEFAULT_SNAIL_PROPERTIES_FILE = "default-snail.properties";
     private static final String KEY_LANGUAGE = "language";
     private static final String KEY_EXPORT_PATH = "exportpath";
+    private static final String KEY_JIRA_URL = "jiraurl";
+    private static final String KEY_BEGIN_OF_FIRST_SPRINT = "beginoffirstsprint";
+    private static final String KEY_SPRINT_DURATION = "sprintduration";
+    private static final String KEY_SPRINT_CHANGE_DAY_FLAG = "sprintchangeday";
 
     private Properties properties;
 
@@ -32,8 +38,31 @@ public class PropertyFileUserPreferencesDoDao implements UserPreferencesDao {
             loadPropertiesFromFile();
 
             UserPreferencesTO preferences = new UserPreferencesTO();
+
             preferences.setLanguage(getLocale());
             preferences.setExportPath(properties.getProperty(KEY_EXPORT_PATH));
+            preferences.setJiraUrl(properties.getProperty(KEY_JIRA_URL));
+
+            String beginOfFirstSprintDate = properties.getProperty(KEY_BEGIN_OF_FIRST_SPRINT);
+
+            if (!StringUtils.isEmpty(beginOfFirstSprintDate)) {
+
+                preferences.setBeginOfFirstSprint(LocalDate.parse(beginOfFirstSprintDate));
+            }
+
+            String sprintDuration = properties.getProperty(KEY_SPRINT_DURATION);
+
+            if (!StringUtils.isEmpty(sprintDuration)) {
+
+                preferences.setSprintDuration(Integer.valueOf(sprintDuration));
+            }
+
+            String sprintChangeDayFlag = properties.getProperty(KEY_SPRINT_CHANGE_DAY_FLAG);
+
+            if (!StringUtils.isEmpty(sprintChangeDayFlag)) {
+
+                preferences.setSprintChangeDayFlag(Boolean.valueOf(sprintChangeDayFlag));
+            }
 
             return preferences;
 
@@ -54,7 +83,32 @@ public class PropertyFileUserPreferencesDoDao implements UserPreferencesDao {
             try (FileOutputStream outputStream = new FileOutputStream(propertyFile.toString())) {
 
                 properties.setProperty(KEY_LANGUAGE, preferences.getLanguage().toLanguageTag());
-                properties.setProperty(KEY_EXPORT_PATH, preferences.getExportPath());
+
+                if (preferences.getExportPath() != null) {
+
+                    properties.setProperty(KEY_EXPORT_PATH, preferences.getExportPath());
+                }
+
+                if (preferences.getJiraUrl() != null) {
+
+                    properties.setProperty(KEY_JIRA_URL, preferences.getJiraUrl());
+                }
+
+                if (preferences.getBeginOfFirstSprint() != null) {
+
+                    properties.setProperty(KEY_BEGIN_OF_FIRST_SPRINT, preferences.getBeginOfFirstSprint().toString());
+                }
+
+                if (preferences.getSprintDuration() != null) {
+
+                    properties.setProperty(KEY_SPRINT_DURATION, preferences.getSprintDuration().toString());
+                }
+
+                if (preferences.getSprintChangeDayFlag() != null) {
+
+                    properties.setProperty(KEY_SPRINT_CHANGE_DAY_FLAG, preferences.getSprintChangeDayFlag().toString());
+                }
+
                 properties.store(outputStream, null);
             }
 
@@ -68,9 +122,9 @@ public class PropertyFileUserPreferencesDoDao implements UserPreferencesDao {
         StopWatch stopwatch = new StopWatch();
         stopwatch.start();
 
-        File bla = new File("./snail.properties");
+        File userPreferencesFile = new File("./snail.properties");
 
-        if (bla.exists() && !bla.isDirectory()) {
+        if (userPreferencesFile.exists() && !userPreferencesFile.isDirectory()) {
 
             try (InputStream inputStream = new FileInputStream("./snail.properties")) {
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.Scene?>
+<?import de.quastenflossler.snail.ui.control.SprintCalendarGridPane?>
+
+<Scene fx:controller="de.quastenflossler.snail.ui.controller.SprintCalendarController" xmlns:fx="http://javafx.com/fxml">
+
+    <BorderPane>
+
+        <top>
+            <fx:include source="../mainMenuBar.fxml" />
+        </top>
+
+        <center>
+            <SprintCalendarGridPane fx:id="sprintCalendarVBox"/>
+        </center>
+
+    </BorderPane>
+
+</Scene>

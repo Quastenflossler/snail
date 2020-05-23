@@ -6,6 +6,7 @@ import de.quastenflossler.snail.ui.command.SnailCommandFactory;
 import de.quastenflossler.snail.ui.command.impl.DefaultSnailCommandFactory;
 import de.quastenflossler.snail.ui.command.impl.HandleExceptionCommand;
 import de.quastenflossler.snail.ui.command.impl.PrintIssueCommand;
+import de.quastenflossler.snail.ui.model.JiraLoginModel;
 import de.quastenflossler.snail.ui.model.PrintIssueModel;
 import de.quastenflossler.snail.ui.model.UserPreferencesModel;
 import de.quastenflossler.snail.ui.stage.SnailScene;
@@ -23,7 +24,7 @@ import javax.inject.Named;
 @Named(value = PrintIssueBorderPaneController.RESOURCE_NAME)
 public class PrintIssueBorderPaneController {
 
-    public static final String RESOURCE_NAME = "Controller";
+    public static final String RESOURCE_NAME = "PrintIssueBorderPaneController";
     private static final Logger LOGGER = LoggerFactory.getLogger(PrintIssueBorderPaneController.class);
 
     @FXML
@@ -64,6 +65,9 @@ public class PrintIssueBorderPaneController {
 
     @Resource(name = UserPreferencesModel.RESOURCE_NAME)
     private UserPreferencesModel userPreferencesModel;
+
+    @Resource(name = JiraLoginModel.RESOURCE_NAME)
+    private JiraLoginModel jiraLoginModel;
 
     public void initialize() {
 
@@ -142,4 +146,5 @@ public class PrintIssueBorderPaneController {
         printIssueModel.setPlannedSprint("");
         printIssueModel.setDeadline("");
     }
+
 }

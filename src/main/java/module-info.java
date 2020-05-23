@@ -12,6 +12,11 @@ module quastenflossler.snail {
     requires spring.boot.autoconfigure;
     requires itextpdf;
     requires javax.annotation.api;
+    requires org.json;
+    requires google.collections;
+    requires google.oauth.client;
+    requires google.http.client;
+    requires google.http.client.jackson2;
 
     exports de.quastenflossler.snail;
     exports de.quastenflossler.snail.config;
@@ -39,5 +44,7 @@ module quastenflossler.snail {
     opens de.quastenflossler.snail.service.core.transfer to org.apache.commons.lang3;
 
     opens de.quastenflossler.snail.service.userpref.domain to spring.beans;
+    opens de.quastenflossler.snail.ui.model to javafx.base;
+    opens de.quastenflossler.snail.ui.control to javafx.fxml;
 
 }

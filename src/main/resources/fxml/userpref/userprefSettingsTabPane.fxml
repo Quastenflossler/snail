@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.quastenflossler.snail.ui.control.LanguageChoiceBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import de.quastenflossler.snail.ui.control.LeftSidedTextCheckBox?>
+<TabPane xmlns:fx="http://javafx.com/fxml" fx:controller="de.quastenflossler.snail.ui.controller.UserPrefSceneController">
+
+    <tabs>
+
+        <Tab text="%settings.tab.general">
+
+            <GridPane hgap="5" vgap="5">
+
+                <padding>
+                    <Insets top="5" right="5" bottom="5" left="5"/>
+                </padding>
+
+                <Label fx:id="languageLabel" text="%settings.languagelabel" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <LanguageChoiceBox fx:id="languageChoiceBox" minWidth="150" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                <Label fx:id="exportPathLabel" text="%settings.exportpathlabel" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <TextField fx:id="exportPathTextField" minWidth="300" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <Button fx:id="chooseExportPathButton" text="%settings.exportpathbutton" GridPane.columnIndex="2" GridPane.rowIndex="2"
+                        onAction="#handleChooseExportPathAction"/>
+
+            </GridPane>
+
+        </Tab>
+
+        <Tab text="%settings.tab.jira">
+
+            <GridPane hgap="5" vgap="5">
+
+                <padding>
+                    <Insets top="5" right="5" bottom="5" left="5"/>
+                </padding>
+
+                <Label fx:id="jiraUrlLabel" text="%settings.jiraurl" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <TextField fx:id="jiraUrlTextField" minWidth="300" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                <Label fx:id="jiraOnlineStatusLabel" text="%settings.jiraonlinestatuslabel" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <Label fx:id="jiraOnlineStatus" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <Button fx:id="jiraConnectButton" text="%settings.jiraconnectbutton" GridPane.columnIndex="2" GridPane.rowIndex="2"
+                        onAction="#handleConnectToJiraAction"/>
+
+            </GridPane>
+
+        </Tab>
+
+        <Tab text="%settings.tab.sprint">
+
+            <GridPane hgap="5" vgap="5">
+
+                <padding>
+                    <Insets top="5" right="5" bottom="5" left="5"/>
+                </padding>
+
+                <Label fx:id="beginOfFirstSprintLabel" text="%settings.beginoffirstsprintlabel" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <DatePicker fx:id="beginOfFirstSprintDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                <Label fx:id="sprintDurationLabel" text="%settings.sprintduration" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <Spinner fx:id="sprintDurationSpinner" amountToStepBy="1" min="1" max="99" editable="true" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                <LeftSidedTextCheckBox fx:id="sprintChangeDayCheckBox" text="%settings.sprintchangedaylabel" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+
+            </GridPane>
+
+        </Tab>
+
+    </tabs>
+
+</TabPane>

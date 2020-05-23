@@ -8,6 +8,23 @@
     <artifactId>snail</artifactId>
     <version>1.0.0</version>
 
+    <name>snail</name>
+    <description>Agile workbench</description>
+    <url>https://github.com/Quastenflossler/snail</url>
+
+    <scm>
+        <url>https://github.com/Quastenflossler/snail</url>
+        <connection>https://github.com/Quastenflossler/snail</connection>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>quasti</id>
+            <name>Quastenflossler</name>
+            <email>quastenflossler@online.de</email>
+        </developer>
+    </developers>
+
     <properties>
         <maven.compiler.release>13</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -68,6 +85,22 @@
 
         </plugins>
     </build>
+
+    <repositories>
+
+        <repository>
+            <id>AtlassianPkgs</id>
+            <name>atlassian - packages</name>
+            <url>https://packages.atlassian.com/maven-public/</url>
+        </repository>
+
+        <repository>
+            <id>Spring Plugins</id>
+            <name>spring - repo</name>
+            <url>https://repo.spring.io/plugins-release/</url>
+        </repository>
+
+    </repositories>
 
     <dependencyManagement>
         <dependencies>
@@ -140,6 +173,69 @@
             <groupId>javax.annotation</groupId>
             <artifactId>javax.annotation-api</artifactId>
             <version>1.3</version>
+        </dependency>
+
+        <!-- weird atlassian stuff -->
+
+        <!--        <dependency>-->
+        <!--            <groupId>com.atlassian.platform</groupId>-->
+        <!--            <artifactId>platform</artifactId>-->
+        <!--            <version>5.0.21</version>-->
+        <!--            <type>pom</type>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>com.atlassian.platform</groupId>-->
+        <!--            <artifactId>platform</artifactId>-->
+        <!--            <version></version>-->
+        <!--            <type>pom</type>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>com.atlassian.jira</groupId>-->
+        <!--            <artifactId>jira-rest-java-client-parent</artifactId>-->
+        <!--            <version>5.2.1</version>-->
+        <!--            <type>pom</type>-->
+        <!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>com.atlassian.jira</groupId>-->
+<!--            <artifactId>jira-rest-java-client-core</artifactId>-->
+<!--            <version>4.0.0</version>-->
+<!--            &lt;!&ndash;                            <exclusions>&ndash;&gt;-->
+<!--            &lt;!&ndash;                                <exclusion>&ndash;&gt;-->
+<!--            &lt;!&ndash;                                    <groupId>org.apache.httpcomponents</groupId>&ndash;&gt;-->
+<!--            &lt;!&ndash;                                    <artifactId>http-nio</artifactId>&ndash;&gt;-->
+<!--            &lt;!&ndash;                                </exclusion>&ndash;&gt;-->
+<!--            &lt;!&ndash;                                <exclusion>&ndash;&gt;-->
+<!--            &lt;!&ndash;                                    <groupId>org.apache.commons</groupId>&ndash;&gt;-->
+<!--            &lt;!&ndash;                                    <artifactId>commons-lang</artifactId>&ndash;&gt;-->
+<!--            &lt;!&ndash;                                </exclusion>&ndash;&gt;-->
+<!--            &lt;!&ndash;                            </exclusions>&ndash;&gt;-->
+
+<!--        </dependency>-->
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20190722</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.oauth-client</groupId>
+            <artifactId>google-oauth-client</artifactId>
+            <version>1.22.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.http-client</groupId>
+            <artifactId>google-http-client-jackson2</artifactId>
+            <version>1.11.0-beta</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.collections</groupId>
+            <artifactId>google-collections</artifactId>
+            <version>1.0</version>
         </dependency>
 
     </dependencies>

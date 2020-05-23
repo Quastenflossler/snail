@@ -29,12 +29,29 @@ public class SetupApplicationCommand implements BasicCommand {
 
         try {
 
-            UserPreferencesTO userPreferences = userPreferenceService.findUserPreferences();
-            userPreferencesModel.setLocale(userPreferences.getLanguage());
-            userPreferencesModel.setExportPath(userPreferences.getExportPath());
+            UserPreferencesTO userPreferencesTO = userPreferenceService.findUserPreferences();
+            userPreferencesModel.setLocale(userPreferencesTO.getLanguage());
+            userPreferencesModel.setExportPath(userPreferencesTO.getExportPath());
+            userPreferencesModel.setJiraUrl(userPreferencesTO.getJiraUrl());
 
-            SnailStageDirector.getInstance().setActiveLocale(userPreferences.getLanguage());
-            
+            if (userPreferencesTO.getBeginOfFirstSprint() != null) {
+
+                userPreferencesModel.setBeginOfFirstSprint(userPreferencesTO.getBeginOfFirstSprint());
+            }
+
+            if (userPreferencesTO.getSprintDuration() != null) {
+
+                userPreferencesModel.setSprintDuration(userPreferencesTO.getSprintDuration());
+            }
+
+            if (userPreferencesTO.getSprintChangeDayFlag() != null) {
+
+                userPreferencesModel.setSprintChangeDayFlag(userPreferencesTO.getSprintChangeDayFlag());
+            }
+
+
+            SnailStageDirector.getInstance().setActiveLocale(userPreferencesTO.getLanguage());
+
             SnailStageDirector.getInstance().init();
 
         } catch (IOException | URISyntaxException e) {
