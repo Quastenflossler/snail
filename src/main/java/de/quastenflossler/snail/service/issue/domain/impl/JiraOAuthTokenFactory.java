@@ -2,7 +2,7 @@ package de.quastenflossler.snail.service.issue.domain.impl;
 
 import com.google.api.client.auth.oauth.OAuthRsaSigner;
 import com.google.api.client.http.apache.ApacheHttpTransport;
-import com.google.api.client.repackaged.org.apache.commons.codec.binary.Base64;
+import com.google.api.client.util.Base64;
 
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;

@@ -13,9 +13,8 @@ module quastenflossler.snail {
     requires itextpdf;
     requires org.json;
 
-    requires google.http.client;
-    requires google.http.client.jackson2;
-    requires google.oauth.client;
+    requires com.google.api.client;
+    requires com.google.api.client.auth;
     requires java.annotation;
 
     exports de.quastenflossler.snail;
