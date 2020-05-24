@@ -6,16 +6,12 @@ import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestFactory;
 import com.google.api.client.http.HttpResponse;
 import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.common.collect.ImmutableMap;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
 import java.util.function.Function;
 
 import static de.quastenflossler.snail.service.issue.domain.impl.PropertiesClient.*;
@@ -33,11 +29,17 @@ public class OAuthClient {
         this.propertiesClient = propertiesClient;
         this.jiraOAuthClient = jiraOAuthClient;
 
-        actionHandlers = ImmutableMap.<Command, Function<List<String>, Optional<Exception>>>builder()
-                .put(Command.REQUEST_TOKEN, this::handleGetRequestTokenAction)
-                .put(Command.ACCESS_TOKEN, this::handleGetAccessToken)
-                .put(Command.REQUEST, this::handleGetRequest)
-                .build();
+        actionHandlers = new HashMap<>();
+
+        actionHandlers.put(Command.REQUEST_TOKEN, this::handleGetRequestTokenAction);
+        actionHandlers.put(Command.ACCESS_TOKEN, this::handleGetAccessToken);
+        actionHandlers.put(Command.REQUEST, this::handleGetRequest);
+
+//        actionHandlers = ImmutableMap.<Command, Function<List<String>, Optional<Exception>>>builder()
+//                .put(Command.REQUEST_TOKEN, this::handleGetRequestTokenAction)
+//                .put(Command.ACCESS_TOKEN, this::handleGetAccessToken)
+//                .put(Command.REQUEST, this::handleGetRequest)
+//                .build();
     }
 
     /**

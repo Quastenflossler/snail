@@ -1,7 +1,5 @@
 package de.quastenflossler.snail.service.issue.domain.impl;
 
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
 import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
@@ -25,11 +23,13 @@ public class PropertiesClient {
     public static final String JIRA_HOME = "jira_home";
 
 
-    private final static Map<String, String> DEFAULT_PROPERTY_VALUES = ImmutableMap.<String, String>builder()
-            .put(JIRA_HOME, "http://zedasago01.1net.dom:8080")
-            .put(CONSUMER_KEY, "OauthKey")
-            .put(PRIVATE_KEY, "MIICXAIBAAKBgQC7620od+ihMcJip67aZx8pJqihijYZ+bEK5wattToOAVpl6rLcOtCEzJs5hRFg0L1sky356s9lZQFY4Ap+3qAdwv8btvwcqjKwig0cHgIQkj3KTGL+lVKTUok+PWVfPSYLq5anAeKLYvQ5FEMnLKzesgaYEbNDVariFuhZJcTbywIDAQABAoGASJ0UNQsAjSkZH94DpskqNVCG4MTzWt4tFzVmU0EwCbFkKPWj342qfWZCpNtSd8KxL38/yM5/DYMWHi2UYKnN3IhLI7OIUaUudZwDHT0HJ/51C5SfjNhA1swGki2X88EhZ1tzjzth2SeveJMMb9ngL6JUf8F2rQ90L9C2QBbIcqECQQDrWtDUqNzPpu++5NmLdIH+f8W+jWbDHO57Me8ymmw8zD/h67J/L3Nqz1WPbpb5XP0pLerJOqr3N/PRSUgYAWGvAkEAzGdlYg/pYu9wn+IsAf2N35bvobzU10mWo7DFb9xxwdM4Y9xr7bj96b4ZEi8mo6SJ4mkiKeB9dR7z4isg70T6pQJBAJkGBC+w11kALnNMspF0oCzMANNjdsQ3pGtfTSn2s5dYKdUHfZgqTv3MbtICUpExv7ytiTFrPsvcil+yKPjKtSsCQCojutP/ocbixB5CG36BjmklDdwTOPH1Wtf+ToXkNZOW/w4fWCTXOYmhxjtoexfLiR2jPQbTICowKmlbKNwLJX0CQGuQBZSB9LMHBm5WTGaFvlYjCddK0jeIe+tmg04z5jYE+Wa+SA2AbYK1K0PDWcflJUDqKTx15dSdK+zyJHlYQic=")
-            .build();
+    private static final Map<String, String> DEFAULT_PROPERTY_VALUES = new HashMap<>();
+
+    static {
+        DEFAULT_PROPERTY_VALUES.put(JIRA_HOME, "http://zedasago01.1net.dom:8080");
+        DEFAULT_PROPERTY_VALUES.put(CONSUMER_KEY, "OauthKey");
+        DEFAULT_PROPERTY_VALUES.put(PRIVATE_KEY, "MIICXAIBAAKBgQC7620od+ihMcJip67aZx8pJqihijYZ+bEK5wattToOAVpl6rLcOtCEzJs5hRFg0L1sky356s9lZQFY4Ap+3qAdwv8btvwcqjKwig0cHgIQkj3KTGL+lVKTUok+PWVfPSYLq5anAeKLYvQ5FEMnLKzesgaYEbNDVariFuhZJcTbywIDAQABAoGASJ0UNQsAjSkZH94DpskqNVCG4MTzWt4tFzVmU0EwCbFkKPWj342qfWZCpNtSd8KxL38/yM5/DYMWHi2UYKnN3IhLI7OIUaUudZwDHT0HJ/51C5SfjNhA1swGki2X88EhZ1tzjzth2SeveJMMb9ngL6JUf8F2rQ90L9C2QBbIcqECQQDrWtDUqNzPpu++5NmLdIH+f8W+jWbDHO57Me8ymmw8zD/h67J/L3Nqz1WPbpb5XP0pLerJOqr3N/PRSUgYAWGvAkEAzGdlYg/pYu9wn+IsAf2N35bvobzU10mWo7DFb9xxwdM4Y9xr7bj96b4ZEi8mo6SJ4mkiKeB9dR7z4isg70T6pQJBAJkGBC+w11kALnNMspF0oCzMANNjdsQ3pGtfTSn2s5dYKdUHfZgqTv3MbtICUpExv7ytiTFrPsvcil+yKPjKtSsCQCojutP/ocbixB5CG36BjmklDdwTOPH1Wtf+ToXkNZOW/w4fWCTXOYmhxjtoexfLiR2jPQbTICowKmlbKNwLJX0CQGuQBZSB9LMHBm5WTGaFvlYjCddK0jeIe+tmg04z5jYE+Wa+SA2AbYK1K0PDWcflJUDqKTx15dSdK+zyJHlYQic=");
+    }
 
     private final String fileUrl;
     private final String propFileName = "config.properties";
@@ -41,7 +41,7 @@ public class PropertiesClient {
     public Map<String, String> getPropertiesOrDefaults() {
         try {
             Map<String, String> map = toMap(tryGetProperties());
-            map.putAll(Maps.difference(map, DEFAULT_PROPERTY_VALUES).entriesOnlyOnRight());
+            map.putAll(DEFAULT_PROPERTY_VALUES);
             return map;
         } catch (FileNotFoundException e) {
             tryCreateDefaultFile();

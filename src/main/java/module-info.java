@@ -5,18 +5,18 @@ module quastenflossler.snail {
     requires javafx.fxml;
 
     requires javax.inject;
-    requires org.slf4j;
+    requires slf4j.api;
     requires spring.context;
     requires spring.beans;
     requires org.apache.commons.lang3;
     requires spring.boot.autoconfigure;
     requires itextpdf;
-    requires javax.annotation.api;
     requires org.json;
-    requires google.collections;
-    requires google.oauth.client;
+
     requires google.http.client;
     requires google.http.client.jackson2;
+    requires google.oauth.client;
+    requires java.annotation;
 
     exports de.quastenflossler.snail;
     exports de.quastenflossler.snail.config;
