@@ -4,9 +4,7 @@ import de.quastenflossler.snail.service.core.domain.DomainObjectMapper;
 import de.quastenflossler.snail.service.core.domain.impl.DefaultDomainObjectMapper;
 import de.quastenflossler.snail.service.core.exception.DataValidationServiceException;
 import de.quastenflossler.snail.service.core.exception.InternalServiceException;
-import de.quastenflossler.snail.service.issue.domain.JiraRestClient;
 import de.quastenflossler.snail.service.issue.domain.SmartIssue;
-import de.quastenflossler.snail.service.issue.domain.impl.BasicJiraRestClient;
 import de.quastenflossler.snail.service.issue.transfer.BasicIssueTO;
 import de.quastenflossler.snail.ui.model.JiraLoginModel;
 import de.quastenflossler.snail.ui.model.UserPreferencesModel;
@@ -24,8 +22,6 @@ public class DefaultIssueService implements IssueService {
     @Resource(name = DefaultDomainObjectMapper.RESOURCE_NAME)
     private DomainObjectMapper domainObjectMapper;
 
-    @Resource(name = BasicJiraRestClient.RESOURCE_NAME)
-    private JiraRestClient jiraRestClient;
 
     @Resource(name = JiraLoginModel.RESOURCE_NAME)
     private JiraLoginModel jiraLoginModel;
@@ -43,8 +39,7 @@ public class DefaultIssueService implements IssueService {
     @Override
     public String loginToJira(final String username, final String password) {
 
-        jiraRestClient.setUrl(userPreferencesModel.getJiraUrl());
-        return jiraRestClient.login(jiraLoginModel.getUsername(), jiraLoginModel.getPassword());
+        return null;
     }
 
     @Override
@@ -62,8 +57,7 @@ public class DefaultIssueService implements IssueService {
     @Override
     public BasicIssueTO findJiraIssue(final String issueKey, final String username, final String password) {
 
-        jiraRestClient.setUrl(userPreferencesModel.getJiraUrl());
-        return jiraRestClient.findIssue(issueKey, username, password);
+        return null;
     }
 
 }
