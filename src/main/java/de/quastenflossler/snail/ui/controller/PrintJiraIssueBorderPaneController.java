@@ -2,9 +2,7 @@ package de.quastenflossler.snail.ui.controller;
 
 import de.quastenflossler.snail.ui.command.SnailCommandFactory;
 import de.quastenflossler.snail.ui.command.impl.DefaultSnailCommandFactory;
-import de.quastenflossler.snail.ui.command.impl.FindIssuesCommand;
 import de.quastenflossler.snail.ui.command.impl.FindJiraIssueCommand;
-import de.quastenflossler.snail.ui.command.impl.LoginToJiraCommand;
 import de.quastenflossler.snail.ui.control.LoginDialog;
 import de.quastenflossler.snail.ui.model.JiraIssueModel;
 import de.quastenflossler.snail.ui.model.JiraLoginModel;

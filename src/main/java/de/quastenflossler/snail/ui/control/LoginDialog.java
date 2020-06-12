@@ -62,7 +62,9 @@ public class LoginDialog extends Dialog<Pair<String, String>> {
         Optional<Pair<String, String>> result = showAndWait();
 
         result.ifPresent(usernamePassword -> {
-            LOGGER.debug("username = {}, password = {}", usernamePassword.getKey(), usernamePassword.getValue());
+
+            this.username = usernamePassword.getKey();
+            this.password = usernamePassword.getValue();
         });
     }
 

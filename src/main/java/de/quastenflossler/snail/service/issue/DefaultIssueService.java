@@ -1,10 +1,12 @@
 package de.quastenflossler.snail.service.issue;
 
+import com.atlassian.jira.rest.client.api.domain.Issue;
 import de.quastenflossler.snail.service.core.domain.DomainObjectMapper;
 import de.quastenflossler.snail.service.core.domain.impl.DefaultDomainObjectMapper;
 import de.quastenflossler.snail.service.core.exception.DataValidationServiceException;
 import de.quastenflossler.snail.service.core.exception.InternalServiceException;
 import de.quastenflossler.snail.service.issue.domain.SmartIssue;
+import de.quastenflossler.snail.service.issue.jira.MyJiraClient;
 import de.quastenflossler.snail.service.issue.transfer.BasicIssueTO;
 import de.quastenflossler.snail.ui.model.JiraLoginModel;
 import de.quastenflossler.snail.ui.model.UserPreferencesModel;
@@ -57,7 +59,15 @@ public class DefaultIssueService implements IssueService {
     @Override
     public BasicIssueTO findJiraIssue(final String issueKey, final String username, final String password) {
 
-        return null;
+        MyJiraClient myJiraClient = new MyJiraClient(username, password, userPreferencesModel.getJiraUrl());
+
+        Issue issue = myJiraClient.getIssue(issueKey);
+
+        BasicIssueTO issueTO = new BasicIssueTO();
+        issueTO.setKey(issue.getKey());
+        issueTO.setSummary(issue.getSummary());
+
+        return issueTO;
     }
 
 }

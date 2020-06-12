@@ -6,7 +6,6 @@ import de.quastenflossler.snail.service.userpref.transfer.UserPreferencesTO;
 import de.quastenflossler.snail.ui.command.SnailCommandFactory;
 import de.quastenflossler.snail.ui.command.impl.DefaultSnailCommandFactory;
 import de.quastenflossler.snail.ui.command.impl.HandleExceptionCommand;
-import de.quastenflossler.snail.ui.command.impl.JiraOAuthCommand;
 import de.quastenflossler.snail.ui.command.impl.SaveUserPreferencesCommand;
 import de.quastenflossler.snail.ui.control.LanguageChoiceBox;
 import de.quastenflossler.snail.ui.control.LeftSidedTextCheckBox;
@@ -143,15 +142,5 @@ public class UserPrefSceneController {
 
     public void handleConnectToJiraAction() {
 
-//        LoginDialog loginDialog = new LoginDialog();
-//        jiraLoginModel.setUsername(loginDialog.getUsername());
-//        jiraLoginModel.setPassword(loginDialog.getPassword());
-//
-//        LoginToJiraCommand loginToJiraCommand = commandFactory.create(LoginToJiraCommand.class);
-//        loginToJiraCommand.setUsername(jiraLoginModel.getUsername());
-//        loginToJiraCommand.setPassword(jiraLoginModel.getPassword());
-//        loginToJiraCommand.execute();
-
-        commandFactory.create(JiraOAuthCommand.class).execute();
     }
 }
