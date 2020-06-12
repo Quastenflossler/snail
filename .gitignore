@@ -1,2 +1,5 @@
 /.idea/
 /quastenflossler-snail.iml
+/target/
+/*.log
+/*.properties
