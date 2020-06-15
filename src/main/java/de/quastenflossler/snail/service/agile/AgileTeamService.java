@@ -2,17 +2,18 @@ package de.quastenflossler.snail.service.agile;
 
 import de.quastenflossler.snail.service.agile.transfer.AgileTeamTO;
 
-import java.util.List;
+import java.util.Collection;
 
-public interface AgileTeamManager {
+public interface AgileTeamService {
 
-    List<AgileTeamTO> findTeams();
+    Collection<AgileTeamTO> findTeams();
+
+    AgileTeamTO getTeam(Long teamId);
 
     Long addTeam(AgileTeamTO team);
 
-    void deleteTeam(Long teamId);
+    void removeTeam(Long teamId);
 
     void updateTeam(Long teamId, AgileTeamTO team);
-
 
 }

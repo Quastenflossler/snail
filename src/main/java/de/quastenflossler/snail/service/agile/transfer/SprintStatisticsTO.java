@@ -2,17 +2,17 @@ package de.quastenflossler.snail.service.agile.transfer;
 
 public class SprintStatisticsTO {
 
-    private SprintTO sprint;
+    private Long sprintId;
     private Integer numberOfPlannedStories;
     private Integer numberOfSolvedStories;
     private Integer totalSolvedStoryPoints;
 
-    public SprintTO getSprint() {
-        return sprint;
+    public Long getSprintId() {
+        return sprintId;
     }
 
-    public void setSprint(final SprintTO sprint) {
-        this.sprint = sprint;
+    public void setSprintId(final Long sprintId) {
+        this.sprintId = sprintId;
     }
 
     public Integer getNumberOfPlannedStories() {

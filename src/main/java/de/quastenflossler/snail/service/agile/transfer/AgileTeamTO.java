@@ -12,6 +12,7 @@ public class AgileTeamTO extends AbstractTransferObject {
     private Long id;
     private String name;
     private List<AgileTeamMemberTO> members = new ArrayList<>();
+    private SprintDuration sprintDuration;
 
     public Long getId() {
         return id;
@@ -35,5 +36,13 @@ public class AgileTeamTO extends AbstractTransferObject {
 
     public void setMembers(final List<AgileTeamMemberTO> members) {
         this.members = members;
+    }
+
+    public SprintDuration getSprintDuration() {
+        return sprintDuration;
+    }
+
+    public void setSprintDuration(final SprintDuration sprintDuration) {
+        this.sprintDuration = sprintDuration;
     }
 }

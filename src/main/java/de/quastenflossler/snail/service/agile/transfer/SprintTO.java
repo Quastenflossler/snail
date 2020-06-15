@@ -12,6 +12,9 @@ public class SprintTO extends AbstractTransferObject {
     private String goal;
     private Date begin;
     private Date end;
+    private SprintDuration duration;
+    private SprintStatus status;
+    private SprintStatisticsTO statistics;
 
     public String getName() {
         return name;
@@ -43,5 +46,29 @@ public class SprintTO extends AbstractTransferObject {
 
     public void setEnd(final Date end) {
         this.end = end;
+    }
+
+    public SprintDuration getDuration() {
+        return duration;
+    }
+
+    public void setDuration(final SprintDuration duration) {
+        this.duration = duration;
+    }
+
+    public SprintStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(final SprintStatus status) {
+        this.status = status;
+    }
+
+    public SprintStatisticsTO getStatistics() {
+        return statistics;
+    }
+
+    public void setStatistics(final SprintStatisticsTO statistics) {
+        this.statistics = statistics;
     }
 }
