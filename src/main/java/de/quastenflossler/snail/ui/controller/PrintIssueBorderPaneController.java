@@ -9,8 +9,8 @@ import de.quastenflossler.snail.ui.command.impl.PrintIssueCommand;
 import de.quastenflossler.snail.ui.model.JiraLoginModel;
 import de.quastenflossler.snail.ui.model.PrintIssueModel;
 import de.quastenflossler.snail.ui.model.UserPreferencesModel;
-import de.quastenflossler.snail.ui.stage.SnailScene;
-import de.quastenflossler.snail.ui.stage.SnailStageDirector;
+import de.quastenflossler.snail.ui.stage.HomeScreenController;
+import de.quastenflossler.snail.ui.stage.HomeScreenPanes;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
@@ -116,7 +116,7 @@ public class PrintIssueBorderPaneController {
 
     public void handleShowPreviewAction() {
 
-        SnailStageDirector.getInstance().showScene(SnailScene.PRINT_ISSUE_WITH_PREVIEW);
+        HomeScreenController.getInstance().activate(HomeScreenPanes.PRINT_ISSUE_WITH_PREVIEW.getName());
     }
 
     public void handleFillWithExampleAction() {

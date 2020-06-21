@@ -4,8 +4,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import de.quastenflossler.snail.ui.control.LeftSidedTextCheckBox?>
+
 <TabPane xmlns:fx="http://javafx.com/fxml" fx:controller="de.quastenflossler.snail.ui.controller.UserPrefSceneController">
 
     <tabs>

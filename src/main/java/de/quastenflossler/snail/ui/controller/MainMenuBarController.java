@@ -4,11 +4,16 @@ import de.quastenflossler.snail.ui.command.SnailCommandFactory;
 import de.quastenflossler.snail.ui.command.impl.CloseApplicationCommand;
 import de.quastenflossler.snail.ui.command.impl.DefaultSnailCommandFactory;
 import de.quastenflossler.snail.ui.model.JiraLoginModel;
-import de.quastenflossler.snail.ui.stage.SnailScene;
-import de.quastenflossler.snail.ui.stage.SnailStage;
-import de.quastenflossler.snail.ui.stage.SnailStageDirector;
+import de.quastenflossler.snail.ui.stage.HomeScreenController;
+import de.quastenflossler.snail.ui.stage.HomeScreenPanes;
+import de.quastenflossler.snail.ui.stage.UiHelper;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import javax.annotation.Resource;
 import javax.inject.Named;
@@ -36,7 +41,7 @@ public class MainMenuBarController {
     @FXML
     public void handlePrintIssueAction() {
 
-        SnailStageDirector.getInstance().showScene(SnailScene.PRINT_ISSUE);
+        HomeScreenController.getInstance().activate(HomeScreenPanes.PRINT_ISSUE.getName());
     }
 
     @FXML
@@ -47,16 +52,26 @@ public class MainMenuBarController {
     @FXML
     public void handleSettingsAction() {
 
-        SnailStageDirector.getInstance().showStage(SnailStage.SETTINGS, SnailScene.SETTINGS);
+        Pane settingsPane = HomeScreenController.getInstance().getPaneMap().get(HomeScreenPanes.USER_SETTINGS.getName());
+        Scene scene = new Scene(settingsPane);
+
+        Stage settingsStage = new Stage(StageStyle.DECORATED);
+        settingsStage.setTitle("Snail - Settings");
+        settingsStage.setResizable(false);
+        settingsStage.initModality(Modality.APPLICATION_MODAL);
+        settingsStage.setScene(scene);
+        settingsStage.toFront();
+        settingsStage.show();
+        UiHelper.centerOnScreen(settingsStage);
     }
 
     public void handlePrintJiraIssueAction() {
 
-        SnailStageDirector.getInstance().showScene(SnailScene.PRINT_JIRA_ISSUE);
+        HomeScreenController.getInstance().activate(HomeScreenPanes.PRINT_JIRA_ISSUE.getName());
     }
 
     public void handleSprintCalendarAction() {
 
-        SnailStageDirector.getInstance().showScene(SnailScene.SPRINT_CALENDAR);
+        HomeScreenController.getInstance().activate("sprint calendar");
     }
 }

@@ -4,10 +4,14 @@ import de.quastenflossler.snail.config.SpringConfig;
 import de.quastenflossler.snail.config.SpringContextFactory;
 import de.quastenflossler.snail.service.core.exception.InternalServiceException;
 import de.quastenflossler.snail.ui.command.impl.SetupApplicationCommand;
-import de.quastenflossler.snail.ui.stage.SnailScene;
-import de.quastenflossler.snail.ui.stage.SnailStage;
-import de.quastenflossler.snail.ui.stage.SnailStageDirector;
+import de.quastenflossler.snail.ui.stage.HomeScreenController;
+import de.quastenflossler.snail.ui.stage.HomeScreenPanes;
+import de.quastenflossler.snail.ui.stage.SnailFxmlManager;
+import de.quastenflossler.snail.ui.stage.UiHelper;
 import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.apache.commons.lang3.time.StopWatch;
 import org.slf4j.Logger;
@@ -15,6 +19,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Import;
+
+import java.util.Map;
 
 @SpringBootApplication
 @Import(SpringConfig.class)
@@ -36,7 +42,7 @@ public class SnailJavaFxClient extends Application {
         applicationContext = (ConfigurableApplicationContext) SpringContextFactory.getApplicationContext();
         LOGGER.debug("context is initialized");
 
-        SnailStageDirector.getInstance().setApplicationContext(applicationContext);
+        SnailFxmlManager.getInstance().setApplicationContext(applicationContext);
 
         SetupApplicationCommand setupApplicationCommand = SpringConfig.getBean(SetupApplicationCommand.class);
         setupApplicationCommand.execute();
@@ -56,7 +62,19 @@ public class SnailJavaFxClient extends Application {
 
         try {
 
-            SnailStageDirector.getInstance().showStage(SnailStage.PRIMARY, SnailScene.HOMESCREEN);
+            Map<String, Pane> loadPanesByFxml = SnailFxmlManager.getInstance().loadPanesByFxml();
+            HomeScreenController.getInstance().setPaneMap(loadPanesByFxml);
+
+            Scene scene = new Scene(new BorderPane(), 1024, 768);
+            HomeScreenController.getInstance().setMainScene(scene);
+            HomeScreenController.getInstance().activate(HomeScreenPanes.HOMESCREEN.getName());
+
+            primaryStage.setTitle("Snail");
+            primaryStage.setResizable(true);
+            primaryStage.setScene(scene);
+            primaryStage.toFront();
+            primaryStage.show();
+            UiHelper.centerOnScreen(primaryStage);
 
         } catch (Exception e) {
 
@@ -64,7 +82,7 @@ public class SnailJavaFxClient extends Application {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
 
         try {
 

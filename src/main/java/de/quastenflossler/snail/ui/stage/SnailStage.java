@@ -5,7 +5,7 @@ import javafx.stage.StageStyle;
 
 public enum SnailStage {
 
-    PRIMARY("Snail", 1024, 768, StageStyle.UTILITY, Modality.NONE),
+    PRIMARY("Snail", 1024, 768, StageStyle.DECORATED, Modality.NONE),
     SETTINGS("Snail - Settings", 0, 0, StageStyle.DECORATED, Modality.APPLICATION_MODAL);
 
     private String title;

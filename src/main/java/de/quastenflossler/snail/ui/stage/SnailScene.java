@@ -2,12 +2,12 @@ package de.quastenflossler.snail.ui.stage;
 
 public enum SnailScene {
 
-    HOMESCREEN("homescreen scene", "homescreenScene.fxml"),
-    PRINT_ISSUE("print issue scene", "printissue/printIssueScene.fxml"),
-    PRINT_ISSUE_WITH_PREVIEW("print issue scene with preview", "printissue/printIssueWithPreviewScene.fxml"),
-    PRINT_JIRA_ISSUE("print jira issue scene", "printissue/printJiraIssueScene.fxml"),
-    SPRINT_CALENDAR("sprint calendar scene", "sprintcalendar/sprintCalendarScene.fxml"),
-    SETTINGS("settings scene", "userpref/userprefScene.fxml");
+    HOMESCREEN("homescreen scene", "homeScreenBorderPane.fxml"),
+    PRINT_ISSUE("print issue scene", "printissue/printIssueBorderPane.fxml"),
+    PRINT_ISSUE_WITH_PREVIEW("print issue scene with preview", "printissue/printIssueWithPreviewBorderPane.fxml"),
+    PRINT_JIRA_ISSUE("print jira issue scene", "printissue/printJiraIssueBorderPane.fxml"),
+    //SPRINT_CALENDAR("sprint calendar scene", "sprintcalendar/sprintCalendarBorderPane.fxml"),
+    SETTINGS("settings scene", "userpref/userprefPane.fxml");
 
     private String name;
     private String fxmlFile;
